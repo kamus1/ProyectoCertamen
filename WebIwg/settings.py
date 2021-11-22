@@ -88,10 +88,16 @@ import dj_database_url
 from decouple import config
 
 DATABASE = {
-    'default':dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    'default':{
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dei6be3374dml6',
+        'HOST':'ec2-3-212-55-200.compute-1.amazonaws.com',
+        'USER':'ggqgwtvpepemww',
+        'PASSWORD':'db512f5cd0559dbfaef16fbd590ec0149ca41ac26bf40a2c5a1b9cee83d56ec0',
+        'PORT': 5432,
 
+    }
+    
 }
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
