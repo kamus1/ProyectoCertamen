@@ -1,1 +1,1 @@
-web: gunicorn PROYECTO-IWI-E.A.L.wsgi --log-file -
+web: gunicorn proyectocertamen.wsgi --log-file -
