@@ -1,0 +1,25 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<div class="titulo"><h1>Mi perfil</h1></div>
+
+<div class="elContenedor"> 
+    
+    
+    <div>
+        <img src="/static/app/img/profile.png" style="border-radius: 50px; display: inline;">
+        <h3 style="display: inline;" id="nombreUsuario"> &nbsp; &nbsp; &nbsp;{{UserName}}</h3>
+        <div style="margin-top: 40px; margin-bottom: 40px;">
+            <p><h5 style="display: inline;">Dirección de correo:</h5><p style="display: inline;"> {{correo}}</p></p>
+            <p><h5 style="display: inline;">Puntos de prestigio: </h5><p style="display: inline;"> {{puntos}}</p></p>
+        </div>
+        
+    </div>
+    <div>
+        <a href="/historial/" class="btn btn-success">Ver Historial de certámenes</a>
+    </div>
+
+{% endblock %}
