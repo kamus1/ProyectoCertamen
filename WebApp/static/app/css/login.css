@@ -1,7 +1,7 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    
+    background-image: url(https://noticias.usm.cl/wp-content//uploads/2017/12/DJI_0018_web-1.jpg);
     background-size: cover;
     background-attachment: fixed;
 }
