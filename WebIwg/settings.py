@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'WebApp'
+    'WebApp',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -148,7 +149,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static', 
+]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles-cdn' #in produccion, we want cdn
+
+from .cdn.conf import * #noqa
+
+# https://www.cfe.sh/blog/django-static-files-digitalocean-spaces
+# https://proyectocertamen.nyc3.digitaloceanspaces.com
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
