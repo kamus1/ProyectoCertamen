@@ -19,7 +19,11 @@
         <div>
                 <!-- <p>Ranking puntos de prestigo</p> -->
             <p>preguntas recientes</p>
-            <p>problema popular (problema con menos puntos de aciertos)</p>
+        {% for p in post %}
+            <div>
+                <a href="/post_id/{{p.id}}/">{{p.texto}}</a>
+            </div>
+        {% endfor %}
         </div>
         <div>
             <h3> <i class="fas fa-trophy" style="color: gold;"></i> &nbsp; Ranking puntos de prestigio</h3>
@@ -43,7 +47,6 @@
             </table>
         
         </div>
-
     </div>
 </div>
 
