@@ -4,7 +4,7 @@
 {% block contenido %}
 
 <div class="elContenedor">
-    <form action="/resultados/" method="post" name="formulario"><br>
+    <form action="/resultados/?id={{id}}" method="post" name="formulario"><br>
         {% csrf_token %}
         <input type="hidden" name="id" value={{id}}>
 

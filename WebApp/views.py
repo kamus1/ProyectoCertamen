@@ -125,9 +125,12 @@ def home(request):
     puntos_usuarios = profile.objects.order_by('-punctuation')
     if len(puntos_usuarios) > 10:
         puntos_usuarios = puntos_usuarios[:10]
-    nombre_usuario = request.user.first_name
-    appelido_usuario = request.user.last_name
-    name = nombre_usuario + " " + appelido_usuario
+    
+    name = ''
+    if request.user.is_authenticated:
+        nombre_usuario = request.user.first_name
+        appelido_usuario = request.user.last_name
+        name = nombre_usuario + " " + appelido_usuario
     top = []
     for usuario in puntos_usuarios:
         id_usuario = usuario.name_id
@@ -137,9 +140,12 @@ def home(request):
         nombre_completo = nombre + ' ' + apellido
         top.append((nombre_completo,puntuacion))
 
+    post = PostForo.objects.all()[:5]
+
     data = {
         'name': name,
         'top': top,
+        'post': post,
     }
 
     return render(request,'app/index.html',data)
@@ -213,6 +219,7 @@ def matematica(request):
 
 #----Resultado del certamen-----
 def resultado(request):
+    request.GET.get('id')
     if request.method == 'POST':
         data = request.POST
         #---verificar si las alternativas son correctas y las guarda en formato (id,True/False,puntos)---
