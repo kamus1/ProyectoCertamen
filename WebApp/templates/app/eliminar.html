@@ -8,13 +8,13 @@
     <h1>
         Confirmar
     </h1>
-    <form method= "POST">
+    <form method="POST">
         {% csrf_token %}
         <p>
             ¿ Estas seguro de eliminar el comentario: {{instance.texto}} ?
         </p>
         <button type="submit">
-                Confirmar
+            Confirmar
         </button>
         <a href="{{instance.content_object.get_absolute_url}}">
             Cancelar
