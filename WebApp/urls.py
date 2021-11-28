@@ -21,4 +21,5 @@ urlpatterns = [
     path('certame/',certamen, name="certamen"),
     path('resultados/',resultado, name="resultados"),
     path('banco-preguntas/',banco_preguntas, name="banco-preguntas"),
+    path('proximamente/',proximamente, name="proximamente"),
 ]

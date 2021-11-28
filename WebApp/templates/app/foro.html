@@ -7,21 +7,23 @@
 <div class="elContenedor">
     <p>
         {% for post in post %}
-                <div class="preguntas mb-3" style="max-width: 800px;">
-                    <div class="card-header"><i class="fas fa-user-circle pr-2">&nbsp;</i> {{post.usuario}}</div>
-                    <div class="card-body">
-                      <h5 class="card-title"><!--posible titulo de la pregunta--></h5>
-                      <p class="card-text"> <h5>{{post.texto}}</h5></p>
-        
-                      <div>
-                        <a href="{% url 'foro2' post.pk %}">
-                            <button type="button" class="btn btn-secondary">
-                                Comentar
-                            </button>
-                        </a>
-                    </div>
-                    </div>
-                  </div>
+        <div class="preguntas mb-3" style="max-width: 800px;">
+            <div class="card-header"><i style="float: left; "class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i> <p style="display: inline-block; ">{{post.usuario}}</p> &nbsp;<h7 style="color: gray; font-size: 10px;">{{post.tiempo}}</h7></div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    <!--posible titulo de la pregunta-->
+                </h5>
+                <p class="card-text">
+                    <h5>{{post.texto}}</h5>
+                </p>
+
+                <div>
+                    <a style=" color: rgb(105, 99, 99); text-decoration: none;" href="{% url 'foro2' post.pk %}">
+                        <div style="text-align: right;"><i class="fas fa-comments "></i>&nbsp;&nbsp;Comentar</div>
+                    </a>
+                </div>
+            </div>
+        </div>
 
         {% endfor %}
     </p>
