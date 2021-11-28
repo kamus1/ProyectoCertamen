@@ -4,22 +4,42 @@
 
 {% block contenido %}
 
-<div>
+<div class="elContenedor" style="padding-top: 30px;">
+    <div class="alert alert-danger" role="alert">
     <h1>
         Confirmar
     </h1>
+    <br>
+    <p>
+            ¿ Estás seguro de eliminar el comentario ? 
+        </p>
     <form method="POST">
         {% csrf_token %}
-        <p>
-            ¿ Estas seguro de eliminar el comentario: {{instance.texto}} ?
-        </p>
-        <button type="submit">
+        <div class="preguntas mb-3" style="max-width: 800px; ">
+            <div class="card-header" style="color: black;"><i style="float: left; "class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i> <p style="display: inline-block; ">{{instance.usuario}}</p> &nbsp;<h7 style="color: gray; font-size: 10px;">{{instance.tiempo}}</h7></div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    <!--posible titulo de la pregunta-->
+                </h5>
+                <p class="card-text">
+                    <h5 style="color: black;">{{instance.texto}}</h5>
+                </p>
+
+                
+            </div>
+        </div>
+        
+        <br>
+        <button class="btn btn-danger"  type="submit">
             Confirmar
         </button>
-        <a href="{{instance.content_object.get_absolute_url}}">
+        <a class="btn btn-secondary"  href="{{instance.content_object.get_absolute_url}}" style="text-decoration: none;">
             Cancelar
         </a>
     </form>
+      </div>
+    
+    
 </div>
 
 {% endblock %}

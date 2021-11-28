@@ -115,11 +115,8 @@ def crearPregunta(request):
     return render(request,'app/crearPost.html',data)
 
 def guardarPregunta(request):
-    texto=request.POST["texto"]
-    nombre_pregunta = request.POST["nombre_pregunta"]
-    pregunta_math = request.POST["pregunta_math"]
-    preguntaPrueba.objects.create(texto=texto, nombre_pregunta=nombre_pregunta, pregunta_math=pregunta_math )
-    return redirect('/crearPregunta/')
+    
+    return render(request, 'app/crearPregunta.html')
 
 def home(request):
     puntos_usuarios = profile.objects.order_by('-punctuation')
