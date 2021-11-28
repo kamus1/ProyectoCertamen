@@ -141,7 +141,7 @@ def home(request):
         top.append((nombre_completo,puntuacion))
 
     post = PostForo.objects.all()[:5]
-
+    
     data = {
         'name': name,
         'top': top,
@@ -452,3 +452,8 @@ def banco_preguntas(request):
         'preguntas': preguntas,
     }
     return render(request,'app/banco_preguntas.html',data)
+
+
+#-----Próximamente---------
+def proximamente(request):
+    return render(request,'app/proximamente.html')
