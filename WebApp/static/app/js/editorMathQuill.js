@@ -6,38 +6,38 @@ MQ.StaticMath(problemSpan);
 var answerSpan = document.getElementById('answer');
 var answerMathField = MQ.MathField(answerSpan, {
     handlers: {
-    edit: function() {
-        var enteredMath = answerMathField.latex(); // Get entered math in LaTeX format
+        edit: function () {
+            var enteredMath = answerMathField.latex(); // Get entered math in LaTeX format
 
-        //escribe por consola el texto escrito en formato LaTeX, es para probar, *se puede borrar
-        //console.log(enteredMath);
-        //antigua funcion 
-        //function escribe(id_of_input){
+            //escribe por consola el texto escrito en formato LaTeX, es para probar, *se puede borrar
+            //console.log(enteredMath);
+            //antigua funcion 
+            //function escribe(id_of_input){
             //document.getElementById("answer").innerHTML =enteredMath;
             //jQuery para añdir la pregunta en latex a un input
             //$("#id_texto").val('\\(' + enteredMath +'\\)');
             //var input_id = '#'+id_of_input;
             //$(input_id).val($(input_id).val() + enteredMath);}
-        
-        
-        //boton escribe el problema editado en pantalla
-        function escribe(id_of_input){
-            document.getElementById("problem").innerHTML =enteredMath;
-    
-            var input_id = '#'+id_of_input;
-            $(input_id).val($(input_id).val() + (' \\(' + enteredMath +'\\)') );
-        }
-        document.getElementById("boton-escribir").onclick = function(){
-            escribe("id_texto");
-            //cambia el formato de latex para visualizarlo en mathquill
-            var problemSpan = document.getElementById('problem');
-            MQ.StaticMath(problemSpan);
+
+
+            //boton escribe el problema editado en pantalla
+            function escribe(id_of_input) {
+                document.getElementById("problem").innerHTML = enteredMath;
+
+                var input_id = '#' + id_of_input;
+                $(input_id).val($(input_id).val() + (' \\(' + enteredMath + '\\)'));
+            }
+            document.getElementById("boton-escribir").onclick = function () {
+                escribe("id_texto");
+                //cambia el formato de latex para visualizarlo en mathquill
+                var problemSpan = document.getElementById('problem');
+                MQ.StaticMath(problemSpan);
+
+            }
 
         }
-        
     }
-    }
-  
+
 });
 
 /* //posible función para previsualizar la pregunta escrita
@@ -53,17 +53,54 @@ document.getElementById("ver-pregunta").onclick = function(){
 */
 
 
+//DESPLEGABLE
+
+$('#demo').show();
+
+$('#btn1').click(function () {
+    $('.collapse').hide();
+    $('#demo').show();
+    // css propias
+    $("#btn1").css('background', '#3D56B2');
+    $("#btn1").css('border-style', 'solid');
+    $("#btn1").css('border-color', '#14279B #14279B #3D56B2');
+
+
+    //css inpropias
+    $("#btn2").css('background', 'transparent');
+    $("#btn2").css('border', 'none');
+
+});
+$('#btn2').click(function () {
+    $('.collapse').hide();
+    $('#demo1').show();
+
+    //css propias
+    $("#btn2").css('background', '#3D56B2');
+    $("#btn2").css('border-style', 'solid');
+    $("#btn2").css('border-color', '#14279B #14279B #3D56B2');
+
+    //css inpropias
+    $("#btn1").css('background', 'transparent');
+    $("#btn1").css('border', 'none');
+
+});
+
+
+
+
+
 //BOTONES
 
 // raiz cuadrada
 var raizCuadrada = document.getElementById('raizCuadrada');
 MQ.StaticMath(raizCuadrada);
 
-function botonRaizCuadrada(){
-    answerMathField.cmd('\\sqrt'); 
+function botonRaizCuadrada() {
+    answerMathField.cmd('\\sqrt');
     answerMathField.focus() // centra el cursor en la ultima función escrita
 }
-document.getElementById("raizCuadrada").onclick = function(){
+document.getElementById("raizCuadrada").onclick = function () {
     botonRaizCuadrada();
 }
 
@@ -71,11 +108,11 @@ document.getElementById("raizCuadrada").onclick = function(){
 var xAlCuadrado = document.getElementById('xAlCuadrado');
 MQ.StaticMath(xAlCuadrado);
 
-function botonxAlCuadrado(){
-    answerMathField.write('^{2}'); 
-    answerMathField.focus() // centra el cursor en la ultima función escrita
+function botonxAlCuadrado() {
+    answerMathField.write('^{2}');
+    answerMathField.focus()
 }
-document.getElementById("xAlCuadrado").onclick = function(){
+document.getElementById("xAlCuadrado").onclick = function () {
     botonxAlCuadrado();
 }
 
@@ -84,11 +121,11 @@ document.getElementById("xAlCuadrado").onclick = function(){
 var elevar = document.getElementById('elevar');
 MQ.StaticMath(elevar);
 
-function botonelevar(){
-    answerMathField.cmd('^'); 
-    answerMathField.focus() // centra el cursor en la ultima función escrita
+function botonelevar() {
+    answerMathField.cmd('^');
+    answerMathField.focus()
 }
-document.getElementById("elevar").onclick = function(){
+document.getElementById("elevar").onclick = function () {
     botonelevar();
 }
 
@@ -96,11 +133,11 @@ document.getElementById("elevar").onclick = function(){
 var raizN = document.getElementById('raizN');
 
 
-function botonraizN(){
-    answerMathField.cmd('\\nthroot'); 
-    answerMathField.focus() // centra el cursor en la ultima función escrita
+function botonraizN() {
+    answerMathField.cmd('\\nthroot');
+    answerMathField.focus()
 }
-document.getElementById("raizN").onclick = function(){
+document.getElementById("raizN").onclick = function () {
     botonraizN();
 }
 
@@ -109,11 +146,11 @@ document.getElementById("raizN").onclick = function(){
 var fraccion = document.getElementById('fraccion');
 MQ.StaticMath(fraccion);
 
-function botonfraccion(){
-    answerMathField.write('\\frac{}{}'); 
-    answerMathField.focus() // centra el cursor en la ultima función escrita
+function botonfraccion() {
+    answerMathField.write('\\frac{}{}');
+    answerMathField.focus()
 }
-document.getElementById("fraccion").onclick = function(){
+document.getElementById("fraccion").onclick = function () {
     botonfraccion();
 }
 
@@ -122,11 +159,11 @@ document.getElementById("fraccion").onclick = function(){
 var logaritmo = document.getElementById('logaritmo');
 MQ.StaticMath(logaritmo);
 
-function botonlogaritmo(){
-    answerMathField.write('\\log_{}()'); 
-    answerMathField.focus() // centra el cursor en la ultima función escrita
+function botonlogaritmo() {
+    answerMathField.write('\\log_{}()');
+    answerMathField.focus()
 }
-document.getElementById("logaritmo").onclick = function(){
+document.getElementById("logaritmo").onclick = function () {
     botonlogaritmo();
 }
 
@@ -134,11 +171,11 @@ document.getElementById("logaritmo").onclick = function(){
 var limite = document.getElementById('limite');
 MQ.StaticMath(limite);
 
-function botonlimite(){
-    answerMathField.write('\\lim_{ {x} \\to \\infty }( )'); 
-    answerMathField.focus() // centra el cursor en la ultima función escrita
+function botonlimite() {
+    answerMathField.write('\\lim_{ {x} \\to \\infty }( )');
+    answerMathField.focus()
 }
-document.getElementById("limite").onclick = function(){
+document.getElementById("limite").onclick = function () {
     botonlimite();
 }
 
@@ -146,11 +183,11 @@ document.getElementById("limite").onclick = function(){
 var pi = document.getElementById('pi');
 MQ.StaticMath(pi);
 
-function botonpi(){
-    answerMathField.write('\\pi'); 
-    answerMathField.focus() // centra el cursor en la ultima función escrita
+function botonpi() {
+    answerMathField.write('\\pi');
+    answerMathField.focus()
 }
-document.getElementById("pi").onclick = function(){
+document.getElementById("pi").onclick = function () {
     botonpi();
 }
 
@@ -158,11 +195,11 @@ document.getElementById("pi").onclick = function(){
 var theta = document.getElementById('theta');
 MQ.StaticMath(theta);
 
-function botontheta(){
-    answerMathField.write('\\theta'); 
-    answerMathField.focus() // centra el cursor en la ultima función escrita
+function botontheta() {
+    answerMathField.write('\\theta');
+    answerMathField.focus()
 }
-document.getElementById("theta").onclick = function(){
+document.getElementById("theta").onclick = function () {
     botontheta();
 }
 
@@ -170,11 +207,11 @@ document.getElementById("theta").onclick = function(){
 var inf = document.getElementById('inf');
 MQ.StaticMath(inf);
 
-function botoninf(){
-    answerMathField.write('\\infty'); 
-    answerMathField.focus() // centra el cursor en la ultima función escrita
+function botoninf() {
+    answerMathField.write('\\infty');
+    answerMathField.focus()
 }
-document.getElementById("inf").onclick = function(){
+document.getElementById("inf").onclick = function () {
     botoninf();
 }
 
@@ -182,11 +219,11 @@ document.getElementById("inf").onclick = function(){
 var integral = document.getElementById('integral');
 MQ.StaticMath(integral);
 
-function botonintegral(){
-    answerMathField.write('\\int_{}'); 
-    answerMathField.focus() // centra el cursor en la ultima función escrita
+function botonintegral() {
+    answerMathField.write('\\int_{}');
+    answerMathField.focus()
 }
-document.getElementById("integral").onclick = function(){
+document.getElementById("integral").onclick = function () {
     botonintegral();
 }
 
@@ -194,10 +231,10 @@ document.getElementById("integral").onclick = function(){
 var derivada = document.getElementById('derivada');
 MQ.StaticMath(derivada);
 
-function botonderivada(){
-    answerMathField.write('\\frac{d}{dx}\\left(\\right)'); 
-    answerMathField.focus() // centra el cursor en la ultima función escrita
+function botonderivada() {
+    answerMathField.write('\\frac{d}{dx}\\left(\\right)');
+    answerMathField.focus()
 }
-document.getElementById("derivada").onclick = function(){
+document.getElementById("derivada").onclick = function () {
     botonderivada();
 }

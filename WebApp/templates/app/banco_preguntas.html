@@ -3,11 +3,14 @@
 
 {% block contenido %}
 
+<div class="titulo">
+    <h1>Listado de preguntas</h1>
+</div>
 <div class="elContenedor">
     <form method="post">
         {% csrf_token %}
-        <label>Filtrar por temas</label>
-        <select name="Tema">
+        <label><h4>Filtrar por temas</h4></label>
+        <select class="form-select w-25"  name="Tema"  aria-label="Default select example">
             <option value="0">Temas</option>
             <optgroup label="MAT021">
                 <option value="numeros_reales">Numeros reales</option>
@@ -27,12 +30,21 @@
                 <option value="polinomios">Polinomios</option>
             </optgroup>
         </select>
-        <input type="submit" value="Filtrar">
+        <input style="margin-top: 20px; width: 100px;"  class="btn btn-primary" type="submit" value="Filtrar">
     </form>
     <div>
         {% for pregunta in preguntas %}
-        <div>
-            <p>{{ pregunta.pregunta }}</p>
+        <div class="preguntas mb-3" style="max-width: 800px;">
+            <div class="card-header">Pregunta número {{forloop.counter}} </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    <!--posible titulo de la pregunta-->
+                </h5>
+                <p class="card-text">
+                    {{ pregunta.pregunta }}
+                </p>
+
+            </div>
         </div>
         {% endfor %}
     </div>
