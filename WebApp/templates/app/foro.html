@@ -8,7 +8,10 @@
     <p>
         {% for post in post %}
         <div class="preguntas mb-3" style="max-width: 800px;">
-            <div class="card-header"><i style="float: left; "class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i> <p style="display: inline-block; ">{{post.usuario}}</p> &nbsp;<h7 style="color: gray; font-size: 10px;">{{post.tiempo}}</h7></div>
+            <div class="card-header"><i style="float: left; " class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i>
+                <p style="display: inline-block; ">{{post.usuario}}</p> &nbsp;<h7 style="color: gray; font-size: 10px;">
+                    {{post.tiempo}}</h7>
+            </div>
             <div class="card-body">
                 <h5 class="card-title">
                     <!--posible titulo de la pregunta-->
@@ -18,7 +21,7 @@
                 </p>
 
                 <div>
-                    <a style=" color: rgb(105, 99, 99); text-decoration: none;" href="{% url 'foro2' post.pk %}">
+                    <a style="text-decoration: none;" href="{% url 'foro2' post.pk %}">
                         <div style="text-align: right;"><i class="fas fa-comments "></i>&nbsp;&nbsp;Comentar</div>
                     </a>
                 </div>
