@@ -23,7 +23,7 @@
             {% for p in post %}
             <div class="preguntas mb-3" style="max-width: 500px;">
 
-                <div class="card-header"><i style="float: left; "class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i> <p style="display: inline-block; ">{{p.usuario}}</p> &nbsp;<h7 style="color: gray; font-size: 10px;">{{p.tiempo}}</h7></div> 
+                <div class="card-header"><i style="float: left; "class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i> <p style="display: inline-block; ">{{p.usuario.first_name}}{{" "}}{{p.usuario.last_name}}</p> &nbsp;<h7 style="color: gray; font-size: 10px;">{{p.tiempo}}</h7></div> 
                 <div class="card-body">
                     <h5 class="card-title"></h5>
                     <p class="card-text">

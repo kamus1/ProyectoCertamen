@@ -100,7 +100,7 @@ def crearPregunta(request):
         form = FormForo(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.autor_id = request.user.username
+            post.usuario_id = request.user.id
             post.save()
             messages.success(request, f"Tu pregunta se ha publicado correctamente")
             return redirect('/foro/') 
