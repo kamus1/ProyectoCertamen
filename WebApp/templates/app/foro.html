@@ -9,7 +9,7 @@
         {% for post in post %}
         <div class="preguntas mb-3" style="max-width: 800px;">
             <div class="card-header"><i style="float: left; " class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i>
-                <p style="display: inline-block; ">{{post.usuario}}</p> &nbsp;<h7 style="color: gray; font-size: 10px;">
+                <p style="display: inline-block; ">{{post.usuario.first_name}}{{" "}}{{post.usuario.last_name}}</p> &nbsp;<h7 style="color: gray; font-size: 10px;">
                     {{post.tiempo}}</h7>
             </div>
             <div class="card-body">
