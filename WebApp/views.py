@@ -137,7 +137,7 @@ def home(request):
         nombre_completo = nombre + ' ' + apellido
         top.append((nombre_completo,puntuacion))
 
-    post = PostForo.objects.all()[:5]
+    post = PostForo.objects.all()[:2]
     
     data = {
         'name': name,
@@ -285,8 +285,9 @@ def resultado(request):
             'puntos': puntos,
         }
 
-    return render(request,'app/resultadosCert.html',d)
-
+        return render(request,'app/resultadosCert.html',d)
+    else:
+        return redirect('/home')
 #----Todo lo relacionado con el usuario----
 def mi_perfil(request):
     correo = request.user.email
