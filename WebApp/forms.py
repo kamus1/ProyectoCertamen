@@ -12,10 +12,9 @@ class FormForo(forms.ModelForm):
     
     class Meta:
         model = PostForo
-        fields = ('sigla', 'texto', 'usuario',)
+        fields = ('sigla', 'texto',)
         widgets = {
             'texto': Textarea(attrs={'class':'form-control'}),
             'sigla': Select(attrs={'class':'form-select'}),
-            'usuario': Select(attrs={'class':'form-select'}),
         }
   

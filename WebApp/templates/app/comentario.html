@@ -7,7 +7,7 @@
 <div class="elContenedor">
 
     <div class="preguntas mb-3" style="max-width: 800px;">
-        <div class="card-header"><i style="float: left; "class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i> <p style="display: inline-block; ">{{instance.usuario.username}}</p> &nbsp;<h7 style="color: gray; font-size: 10px;">{{instance.tiempo}}</h7></div>
+        <div class="card-header"><i style="float: left; "class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i> <p style="display: inline-block; ">{{instance.usuario.first_name}}{{" "}}{{instance.usuario.last_name}}</p> &nbsp;<h7 style="color: gray; font-size: 10px;">{{instance.tiempo}}</h7></div>
         <div class="card-body">
             <h5 class="card-title">
                 <!--posible titulo de la pregunta-->
@@ -34,7 +34,7 @@
             <div>
                 <div class="preguntas mb-3" style="max-width: 500px;">
 
-                    <div class="card-header"><i style="float: left; "class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i> <p style="display: inline-block; ">{{ver_comentario.usuario}}</p> &nbsp;<h7 style="color: gray; font-size: 10px;">{{ver_comentario.tiempo}}</h7></div> 
+                    <div class="card-header"><i style="float: left; "class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i> <p style="display: inline-block; ">{{ver_comentario.usuario.first_name}}{{" "}}{{ver_comentario.usuario.last_name}}</p> &nbsp;<h7 style="color: gray; font-size: 10px;">{{ver_comentario.tiempo}}</h7></div> 
                     <div class="card-body">
                         <h5 class="card-title"></h5>
                         <p class="card-text">
@@ -67,7 +67,7 @@
                         {%for respuesta in ver_comentario.hijo %}
                         <div>
                             <span>
-                                {{respuesta.usuario}}
+                                {{respuesta.usuario.first_name}}{{" "}}{{respuesta.usuario.last_name}}
                                 {{respuesta.texto}}
                             </span>
                         </div>
