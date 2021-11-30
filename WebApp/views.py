@@ -12,7 +12,7 @@ from WebApp.models import PreguntasMate, PostForo, profile, historialCertamen
 from random import sample
 from .forms import FormComentarios, FormForo
 
-from .models import Comentario, PostForo, preguntaPrueba # prueba
+from .models import Comentario, PostForo # prueba
 
 #----Funciones para los views----
 def generar_id(largo):
