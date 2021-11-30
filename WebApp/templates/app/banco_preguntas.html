@@ -10,7 +10,7 @@
     <form method="post">
         {% csrf_token %}
         <label><h4>Filtrar por temas</h4></label>
-        <select class="form-select w-25"  name="Tema"  aria-label="Default select example">
+        <!-- <select class="form-select w-25"  name="Tema"  aria-label="Default select example">
             <option value="0">Temas</option>
             <optgroup label="MAT021">
                 <option value="numeros_reales">Numeros reales</option>
@@ -29,8 +29,18 @@
                 <option value="numeros_complejos">Numeros complejos</option>
                 <option value="polinomios">Polinomios</option>
             </optgroup>
+        </select> -->
+
+        <select id="ramo">
+            <option selected>Selecione</option>
         </select>
+
+        <select id="materia" name="Tema">
+            <option selected>---------</option>
+        </select>
+
         <input style="margin-top: 20px; width: 100px;"  class="btn btn-primary" type="submit" value="Filtrar">
+        
     </form>
     <div>
         {% for pregunta in preguntas %}
@@ -47,7 +57,72 @@
             </div>
         </div>
         {% endfor %}
+        
     </div>
+    
 </div>
+<script>
+    let curso = ["MAT021","MAT022","MAT023","MAT024"];
+    let materia_MAT021 = [["numeros_reales","Numeros reales"],
+    ["funciones","Funciones"],
+    ["limite","Limite"],
+    ["continuidad","Continuidad"],
+    ["calculo_diferencial","Calculo diferencial"],
+    ["logica_proposicional","Logica proposicional"],
+    ["conjunto","Conjunto"],
+    ["relaciones","Relaciones"],
+    ["trigonometria","Trigonometria"],
+    ["exponencial_logaritmo","Exponencial logaritmo"],
+    ["geometria_analitica","Geometria analitica"],
+    ["induccion","Induccion"],
+    ["sumatoria_productoria","Sumatoria productoria"],
+    ["numeros_complejos","Numeros complejos"],
+    ["polinomios","Polinomios"],];
 
+
+    let combobox_ramo = document.getElementById("ramo");
+    let combobox_materia = document.getElementById("materia");
+
+    function recorrer(combobox,valores,campo){
+        combobox_materia.innerHTML = "";
+        
+        if(campo == "ramo"){
+            for(let index of valores){
+                combobox.innerHTML += `<option value="${index}">${index}</option>`;
+            }
+        }else{
+            for(let index of valores){
+                combobox.innerHTML += `<option value="${index[0]}">${index[1]}</option>`;
+        }}
+    }
+
+    function llenarCampo(){
+        recorrer(combobox_ramo,curso,"ramo");
+    }
+
+    llenarCampo()
+
+    combobox_ramo.addEventListener("change",(e)=>{
+        let dato = e.target.value;
+        
+        switch (dato) {
+            case "MAT021":
+                recorrer(combobox_materia,materia_MAT021,"materia");
+                break;
+            case "MAT022":
+                recorrer(combobox_materia,[["Proximamente","Proximamente"]],"materia");
+                break;
+            case "MAT023":
+                recorrer(combobox_materia,[["Proximamente","Proximamente"]],"materia");
+                break;
+            case "MAT024":
+                recorrer(combobox_materia,[["Proximamente","Proximamente"]],"materia");
+                break;
+            default:
+            recorrer(combobox_materia,[["-----------","-----------"]],"materia");
+                break;
+        }
+        }
+    );
+</script>
 {% endblock %}
