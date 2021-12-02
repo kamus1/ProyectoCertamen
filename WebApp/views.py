@@ -23,7 +23,7 @@ def generar_id(largo):
     id_certamen = ''.join(id_certamen)
     return id_certamen
 
-def generar_preguntas(num_preg,temas):
+def generar_preguntas(num_preg,temas,dif):
     preg_for_tem = {}
     for tema in temas:
         if tema not in preg_for_tem:
@@ -44,7 +44,10 @@ def generar_preguntas(num_preg,temas):
 
     preguntaRandom = []
     for tema in preg_for_tem:
-        preguntas_db = PreguntasMate.objects.filter(tema=tema).values()      
+        if dif == 'MIXTO':
+            preguntas_db = PreguntasMate.objects.filter(tema=tema).values()
+        else:
+            preguntas_db = PreguntasMate.objects.filter(tema=tema,dificultad=dif).values()      
         preguntaRandom.extend(sample(list(preguntas_db),preg_for_tem[tema]))
 
     preguntas = []
@@ -157,13 +160,14 @@ def certamen(request):
             datos = request.POST
             num_preg = int(request.POST['number_of_questions'])
             time = request.POST['tiempo']
+            dificultad = request.POST['dificultad']
             #----Separar temas----
             temas = []
             for e in datos:
-                if e not in ('csrfmiddlewaretoken','tiempo','number_of_questions'):
+                if e not in ('csrfmiddlewaretoken','tiempo','number_of_questions','dificultad'):
                     temas.append(e)
             #----Generar preguntas----
-            preguntas,id_preguntas = generar_preguntas(num_preg,temas)
+            preguntas,id_preguntas = generar_preguntas(num_preg,temas,dificultad)
 
             #----Crear el certamen en la DB para su posterior verificacion----
             historialCertamen.objects.create(id_usuario=request.user.id ,id_preguntas=id_preguntas,estado=False,id_certamen=id_certamen)
