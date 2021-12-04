@@ -1,1 +1,5 @@
 staticfiles-cdn/
+<<<<<<< HEAD
+=======
+db.sqlite3
+>>>>>>> af929deef3280ccda82148a792ff53151f852adf
