@@ -27,7 +27,7 @@
 
 
             <div class="editor">
-                <h2>Editor de fórmulas</h2>
+                <h2>Creador de Fórmulas</h2>
 
                 <div class="cont" ng-app="myApp" ng-controller="customersCtrl">
                     <div style="margin-left: 20px;">
@@ -39,33 +39,45 @@
 
                     <div id="demo" class="collapse">
                         <section>
-                            <span>Basic Math</span>
+                            <span>Matemática Básica</span>
 
                             <table class="tabla-btn">
 
                                 <tr style="display: flex; flex-flow: row wrap; ">
 
-                                    <td type="button" id="raizCuadrada"> \sqrt{☐}</td>
+                                    <td type="button" id="fraccion"> \frac{☐}{☐} </td>
 
                                     <td type="button" id="xAlCuadrado"> ☐^{2} </td>
 
                                     <td type="button" id="elevar"> ☐^☐ </td>
 
+                                    <td type="button" id="raizCuadrada"> \sqrt{☐}</td>
+
                                     <td type="button" id="raizN"> $$\sqrt[☐]{☐}$$ </td>
 
-                                    <td type="button" id="fraccion"> \frac{☐}{☐} </td>
+                                    <td type="button" id="inf"> \infty </td>
 
-                                    <td type="button" id="logaritmo"> \log_{☐}(☐) </td>
-
-                                    <td type="button" id="limite"> \lim </td>
+                                    <td type="button" id="negativoinf">$$ - \infty $$</td>
 
                                     <td type="button" id="pi"> \pi </td>
 
-                                    <td type="button" id="theta"> \theta </td>
+                                    <td type="button" id="e"> e </td>
 
-                                    <td type="button" id="inf"> \infty </td>
-                                    <td type="button" id="integral"> \int_{☐}^{☐} </td>
-                                    <td type="button" id="derivada"> \frac{d}{dx}\left(☐\right) </td>
+                                    <td type="button" id="e_exp"> e^☐ </td>
+
+                                    <td type="button" id="logaritmo_natural"> \ln (☐) </td>
+
+                                    <td type="button" id="logaritmo"> \log_{☐}(☐) </td>
+
+                                    <td type="button" id="logaritmo_base10"> \log_{10} (☐) </td>
+
+                                    <td type="button" id="valor_absoluto"> | ☐ | </td>
+
+                                    <td type="button" id="menor_igual">☐ \leq ☐</td>
+
+                                    <td type="button" id="mayor_igual">☐ \geq ☐</td>
+
+                                    <td type="button" id="desigual">☐ \neq ☐</td>
 
                                 </tr>
 
@@ -75,7 +87,46 @@
 
                     <div id="demo1" class="collapse">
                         <section>
-                            <span>Aquí no hay nada</span>
+
+                            <span>Cálculo y Sumatoria</span>
+
+                            <table class="tabla-btn">
+
+                                <tr style="display: flex; flex-flow: row wrap; ">
+
+                                    <td type="button" id="derivada"> \frac{d}{d\ ☐}</td>
+
+                                    <td type="button" id="n_derivada"> \frac{d\ ^☐}{d\ ☐^☐}</td>
+
+                                    <td type="button" id="derivada_parcial"> \frac{\partial}{\partial\ ☐}</td>
+
+                                    <td type="button" id="derivada_parcial_n"> \frac{\partial\ ^☐}{\partial\ ☐^☐}</td>
+
+                                    <td type="button" id="derivada_parcial_mixta">\frac{\partial^2}{\partial☐\partial☐}</td>
+
+                                    <td type="button" id="integral_1">\int</td>
+
+                                    <td type="button" id="sumatoria"> \sum_{☐}^{☐} </td>
+
+                                    <td type="button" id="productoria"> \prod_{☐}^{☐} </td>
+
+                                    <td type="button" id="limite_1"> \lim_{☐\to☐} </td>
+
+                                    <td type="button" id="limite_2"> \lim_{ ☐ \to ☐\^{-}} </td>
+
+                                    <td type="button" id="limite_3"> \lim_{ ☐ \to ☐ \^{+}} </td>
+
+                                    <td type="button" id="theta"> \theta </td>
+
+
+                                    <td type="button" id="integral_definida"> \int_{☐}^{☐} </td>
+
+
+                                
+                                </tr>
+
+
+                            </table>
                         </section>
 
                     </div>
@@ -84,7 +135,7 @@
                 <div>
 
                     <!--campo para escribir el problema-->
-                    Diseñe el problema a preguntar aquí
+                    Diseñe las formulas para su preguntar aquí:
                     <p><span class="form-control" rows="3" id="answer"> </span></p>
 
                     <!--esto está oculto, importante para el funcionamiento de diseñar preguntas-->
@@ -100,4 +151,8 @@
     </div>
     <!--javascript editor mathquill-->
     <script src="{% static 'app/js/editorMathQuill.js' %}"></script>
+
+<script>
+
+</script>
     {% endblock %}
