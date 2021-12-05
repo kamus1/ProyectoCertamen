@@ -110,7 +110,12 @@
                         aria-label="Slide {{forloop.counter}}">{{forloop.counter}}</button>
                     {% endfor %}
                 </div>
+                {% if estatus == False %}
                 <input class="btn btn-danger" type="submit" value="Terminar">
+                {% else %}
+                <input class="btn btn-danger" type="submit" value="Terminar" disabled>
+                {% endif %}
+
 
             </div>
         </div>
