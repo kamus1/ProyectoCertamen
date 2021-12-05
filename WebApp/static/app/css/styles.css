@@ -195,7 +195,16 @@ body{
 
 }
 
-/*--crear pregunta--*/
+/*--perfil--*/
+
+.imagen-perfil{
+    border-radius: 50px;
+      background-image: url(https://aula.usm.cl/theme/image.php/moove/core/1638601202/u/f1);  
+      background-size: 100px;
+      width: 100px;
+      height: 100px;
+    }
+    
 /*-----------------*/
 
 /*preguntas certamen*/
