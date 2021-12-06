@@ -136,7 +136,7 @@ class Comentario(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
 
-    padre = models.ForeignKey("self", null=True, blank=True, on_delete= models.DO_NOTHING)
+    padre = models.ForeignKey("self", null=True, blank=True, on_delete= models.CASCADE)
 
     tiempo = models.DateTimeField(auto_now_add=True)
 
