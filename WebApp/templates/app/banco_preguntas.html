@@ -9,17 +9,17 @@
 <div class="elContenedor">
     <form method="post" onsubmit="return validacion()">
         {% csrf_token %}
-        <label><h4>Filtrar por temas</h4></label>
+        <label ><h4>Filtrar por temas</h4></label><br>
 
-        <select id="ramo">
+        <select class="btn btn-secondary dropdown-toggle" id="ramo">
             <option selected>Selecione</option>
         </select>
 
-        <select id="materia" name="Tema">
-            <option selected>---------</option>
+        <select class="btn btn-secondary dropdown-toggle" id="materia" name="Tema">
+            <option selected>------</option>
         </select>
 
-        <input style="margin-top: 20px; width: 100px;"  class="btn btn-primary" type="submit" value="Filtrar">
+        <input style="width: 100px;"  class="btn btn-primary" type="submit" value="Filtrar">
         
     </form>
     <div>
@@ -52,7 +52,7 @@
         return validado;
     }
 
-    let curso = ["MAT021","MAT022","MAT023","MAT024"];
+    let curso = ["Selecione","MAT021","MAT022","MAT023","MAT024"];
     let materia_MAT021 = [["numeros_reales","Numeros reales"],
     ["funciones","Funciones"],
     ["limite","Limite"],
@@ -72,9 +72,11 @@
 
     let combobox_ramo = document.getElementById("ramo");
     let combobox_materia = document.getElementById("materia");
+    
 
     function recorrer(combobox,valores,campo){
-        combobox_materia.innerHTML = "";
+        console.log(campo)
+        combobox.innerHTML = "";
         
         if(campo == "ramo"){
             for(let index of valores){
@@ -97,6 +99,9 @@
         let dato = e.target.value;
         
         switch (dato) {
+            case "Seleccione":
+                recorrer(combobox_materia,[["------------","-------------"]],"materia");
+                break;
             case "MAT021":
                 recorrer(combobox_materia,materia_MAT021,"materia");
                 break;
