@@ -85,8 +85,34 @@ $('#btn2').click(function () {
     $("#btn1").css('border', 'none');
 
 });
+$('#btn3').click(function () {
+    $('.collapse').hide();
+    $('#demo2').show();
 
+    //css propias
+    $("#btn3").css('background', '#3D56B2');
+    $("#btn3").css('border-style', 'solid');
+    $("#btn3").css('border-color', '#14279B #14279B #3D56B2');
 
+    //css inpropias
+    $("#btn1").css('background', 'transparent');
+    $("#btn1").css('border', 'none');
+
+});
+$('#btn4').click(function () {
+    $('.collapse').hide();
+    $('#demo3').show();
+
+    //css propias
+    $("#btn4").css('background', '#3D56B2');
+    $("#btn4").css('border-style', 'solid');
+    $("#btn4").css('border-color', '#14279B #14279B #3D56B2');
+
+    //css inpropias
+    $("#btn1").css('background', 'transparent');
+    $("#btn1").css('border', 'none');
+
+});
 
 
 
@@ -398,14 +424,14 @@ document.getElementById("derivada_parcial_mixta").onclick = function () {
 }
 
 //integral 
-var integral = document.getElementById('integral');
+var integral = document.getElementById('int');
 MQ.StaticMath(integral);
 
 function botonintegral() {
-    answerMathField.write('\\[\\int\\]');
+    answerMathField.write('\\[int\\]');
     answerMathField.focus()
 }
-document.getElementById("integral").onclick = function () {
+document.getElementById("int").onclick = function () {
     botonintegral();
 }
 
@@ -456,3 +482,437 @@ function botonlimite_3() {
 document.getElementById("limite_3").onclick = function () {
     botonlimite_3();
 }
+
+//grados
+var grados = document.getElementById('grados');
+MQ.StaticMath(grados);
+
+function botongrados() {
+    answerMathField.write('\\^{\\circ}');
+    answerMathField.focus()
+}
+document.getElementById("grados").onclick = function () {
+    botongrados();
+}
+
+//rad
+var rad = document.getElementById('rad');
+MQ.StaticMath(rad);
+
+function botonrad() {
+    answerMathField.write('rad');
+    answerMathField.focus()
+}
+document.getElementById("rad").onclick = function () {
+    botonrad();
+}
+
+//sen
+var sen = document.getElementById('sen');
+MQ.StaticMath(sen);
+
+function botonsen() {
+    answerMathField.write('sen \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("sen").onclick = function () {
+    botonsen();
+}
+
+//cos
+var cos = document.getElementById('cos');
+MQ.StaticMath(cos);
+
+function botoncos() {
+    answerMathField.write('cos \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("cos").onclick = function () {
+    botoncos();
+}
+
+//tan
+var tan = document.getElementById('tan');
+MQ.StaticMath(tan);
+
+function botontan() {
+    answerMathField.write('tan \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("tan").onclick = function () {
+    botontan();
+}
+
+//cot
+var cot = document.getElementById('cot');
+MQ.StaticMath(cot);
+
+function botoncot() {
+    answerMathField.write('cot \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("cot").onclick = function () {
+    botoncot();
+}
+
+//sec
+var sec = document.getElementById('sec');
+MQ.StaticMath(sec);
+
+function botonsec() {
+    answerMathField.write('sec \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("sec").onclick = function () {
+    botonsec();
+}
+
+//csc
+var csc = document.getElementById('csc');
+MQ.StaticMath(csc);
+
+function botoncsc() {
+    answerMathField.write('csc \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("csc").onclick = function () {
+    botoncsc();
+}
+
+//arcsen
+var arcsen = document.getElementById('arcsen');
+MQ.StaticMath(arcsen);
+
+function botonarcsen() {
+    answerMathField.write('arcsen \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("arcsen").onclick = function () {
+    botonarcsen();
+}
+
+//arccos
+var arccos = document.getElementById('arccos');
+MQ.StaticMath(arccos);
+
+function botonarccos() {
+    answerMathField.write('arc\\ cos \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("arccos").onclick = function () {
+    botoncos();
+}
+
+//arctan
+var arctan = document.getElementById('arctan');
+MQ.StaticMath(arctan);
+
+function botonarctan() {
+    answerMathField.write('arctan \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("arctan").onclick = function () {
+    botonarctan();
+}
+
+//arccot
+var arccot = document.getElementById('arccot');
+MQ.StaticMath(arccot);
+
+function botonarccot() {
+    answerMathField.write('arc\\ cot \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("arccot").onclick = function () {
+    botonarccot();
+}
+
+//sec
+var arcsec = document.getElementById('arcsec');
+MQ.StaticMath(arcsec);
+
+function botonarcsec() {
+    answerMathField.write('arcsec \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("arcsec").onclick = function () {
+    botonarcsec();
+}
+
+//csc
+var arccsc = document.getElementById('arccsc');
+MQ.StaticMath(arccsc);
+
+function botonarccsc() {
+    answerMathField.write('arc\\ csc \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("arccsc").onclick = function () {
+    botonarccsc();
+}
+
+
+//senh
+var senh = document.getElementById('senh');
+MQ.StaticMath(senh);
+
+function botonsenh() {
+    answerMathField.write('senh \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("senh").onclick = function () {
+    botonsenh();
+}
+
+//cos
+var cosh = document.getElementById('cosh');
+MQ.StaticMath(cosh);
+
+function botoncosh() {
+    answerMathField.write('cosh \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("cosh").onclick = function () {
+    botoncosh();
+}
+
+//tan
+var tanh = document.getElementById('tanh');
+MQ.StaticMath(tanh);
+
+function botontanh() {
+    answerMathField.write('tanh \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("tanh").onclick = function () {
+    botontanh();
+}
+
+//cot
+var coth = document.getElementById('coth');
+MQ.StaticMath(coth);
+
+function botoncoth() {
+    answerMathField.write('coth \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("coth").onclick = function () {
+    botoncoth();
+}
+
+//sec
+var sech = document.getElementById('sech');
+MQ.StaticMath(sech);
+
+function botonsech() {
+    answerMathField.write('sech \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("sech").onclick = function () {
+    botonsech();
+}
+
+//csc
+var csch = document.getElementById('csch');
+MQ.StaticMath(csch);
+
+function botoncsch() {
+    answerMathField.write('csch \\left(\\right)');
+    answerMathField.focus()
+}
+document.getElementById("csch").onclick = function () {
+    botoncsch();
+}
+
+//para todo
+var paratodo = document.getElementById('paratodo');
+MQ.StaticMath(paratodo);
+
+function botonparatodo() {
+    answerMathField.write('\\forall');
+    answerMathField.focus()
+}
+document.getElementById("paratodo").onclick = function () {
+    botonparatodo();
+}
+
+//existe_1
+var existe_1 = document.getElementById('existe_1');
+MQ.StaticMath(existe_1);
+
+function botonexiste_1() {
+    answerMathField.write('\\exists');
+    answerMathField.focus()
+}
+document.getElementById("existe_1").onclick = function () {
+    botonexiste_1();
+}
+
+//existe_2
+var existe_2 = document.getElementById('existe_2');
+MQ.StaticMath(existe_2);
+
+function botonexiste_2() {
+    answerMathField.write('\\exists!');
+    answerMathField.focus()
+}
+document.getElementById("existe_2").onclick = function () {
+    botonexiste_2();
+}
+
+//existe_3
+var existe_3 = document.getElementById('existe_3');
+MQ.StaticMath(existe_3);
+
+function botonexiste_3() {
+    answerMathField.write('\\nexists');
+    answerMathField.focus()
+}
+document.getElementById("existe_3").onclick = function () {
+    botonexiste_3();
+}
+
+//union
+var union = document.getElementById('union');
+MQ.StaticMath(union);
+
+function botonunion() {
+    answerMathField.write('\\cup');
+    answerMathField.focus()
+}
+document.getElementById("union").onclick = function () {
+    botonunion();
+}
+
+//interseccion
+var interseccion = document.getElementById('interseccion');
+MQ.StaticMath(interseccion);
+
+function botoninterseccion() {
+    answerMathField.write('\\cap');
+    answerMathField.focus()
+}
+document.getElementById("interseccion").onclick = function () {
+    botoninterseccion();
+}
+
+//subset
+var subset = document.getElementById('contenido_a');
+MQ.StaticMath(subset);
+
+function botonsubset() {
+    answerMathField.write('\\subset');
+    answerMathField.focus()
+}
+document.getElementById("contenido_a").onclick = function () {
+    botonsubset();
+}
+
+//subseteq
+var subseteq = document.getElementById('contenido_1');
+MQ.StaticMath(subseteq);
+
+function botonsubseteq() {
+    answerMathField.write('\\subseteq');
+    answerMathField.focus()
+}
+document.getElementById("contenido_1").onclick = function () {
+    botonsubseteq();
+}
+
+//en
+var en = document.getElementById('en');
+MQ.StaticMath(en);
+
+function botonen() {
+    answerMathField.write('\\in');
+    answerMathField.focus()
+}
+document.getElementById("en").onclick = function () {
+    botonen();
+}
+
+//no_en
+var no_en = document.getElementById('no_en');
+MQ.StaticMath(no_en);
+
+function botonno_en() {
+    answerMathField.write('\\notin');
+    answerMathField.focus()
+}
+document.getElementById("no_en").onclick = function () {
+    botonno_en();
+}
+
+//vaco
+var vacio = document.getElementById('vacio');
+MQ.StaticMath(vacio);
+
+function botonvacio() {
+    answerMathField.write('\\empty');
+    answerMathField.focus()
+}
+document.getElementById("vacio").onclick = function () {
+    botonvacio();
+}
+
+//neg
+var neg = document.getElementById('neg');
+MQ.StaticMath(neg);
+
+function botonneg() {
+    answerMathField.write('\\neg');
+    answerMathField.focus()
+}
+document.getElementById("neg").onclick = function () {
+    botonneg();
+}
+
+//o
+var o = document.getElementById('o');
+MQ.StaticMath(o);
+
+function botono() {
+    answerMathField.write('\\lor');
+    answerMathField.focus()
+}
+document.getElementById("o").onclick = function () {
+    botono();
+}
+
+//y
+var y = document.getElementById('y');
+MQ.StaticMath(y);
+
+function botony() {
+    answerMathField.write('\\land');
+    answerMathField.focus()
+}
+document.getElementById("y").onclick = function () {
+    botony();
+}
+
+//implica
+var implica = document.getElementById('implica');
+MQ.StaticMath(implica);
+
+function botonimplica() {
+    answerMathField.write('\\longrightarrow');
+    answerMathField.focus()
+}
+document.getElementById("implica").onclick = function () {
+    botonimplica();
+}
+
+//ssi
+var ssi = document.getElementById('ssi');
+MQ.StaticMath(ssi);
+
+function botonssi() {
+    answerMathField.write('\\iff');
+    answerMathField.focus()
+}
+document.getElementById("ssi").onclick = function () {
+    botonssi();
+}
+
