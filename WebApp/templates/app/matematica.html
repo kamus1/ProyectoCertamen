@@ -76,19 +76,19 @@
 
 
                     <div class="md-form mx-3 my-3 " id="time" style="display: none;">
-                        <label for="timeSelec">Selecciona tu tiempo</label>
+                        <label for="timeSelec">Selecciona tu tiempo:</label>
                         <input class="form-control w-25 " type="time" id="timeSelec" min="00:10" value="" name="tiempo">
                     </div>
 
                     <div class="md-form mx-3 my-3">
-                        <label for="num-preguntas">Ingrese numero de preguntas que quiere en el certamen</label>
-                        <input class="form-control" type="number" style="width: 80px;" max="8" min="1" value="1"
+                        <label for="num-preguntas">Ingrese el número de preguntas que quiere en el certamen:</label>
+                        <input class="form-control" type="number" style="width: 80px; margin-top: 10px; margin-bottom: 30px;" max="8" min="1" value="1"
                             name='number_of_questions' id="num_preg">
 
                     </div>
-                    <div>
-                        <label>Seleccione dificultad del certamen</label>
-                        <select name="dificultad">
+                    <div class="md-form mx-3 my-3">
+                        <label>Seleccione la dificultad del certamen:</label> <br>
+                        <select style="margin-top: 10px; margin-bottom: 10px;" class="btn btn-outline-danger dropdown-toggle" name="dificultad">
                                 <option value="MIXTO">Mixto</option>
                                 <option value="FACIL">Facil</option>
                                 <option value="MEDIA">Media</option>
@@ -97,13 +97,20 @@
                     </div>
 
                     <!--boton-<input class="form-control w-25" type="number" name='number_of_questions' placeholder="N° preguntas" >------>
-                    <div class="form-form mx-3 my-5 "><button type="submit" class="btn btn-success ">Generar
-                            Certamen</button></div>
+                    <div class="form-form mx-3 my-5 "><button type="submit" class="btn btn-success ">Generar Certamen</button></div>
                 
                 
-                     <div>
-                             <span>Consulta los contenidos de las materias aquí:</span>
-                             <button>Consulta</button>
+                     <div style="margin-top: 100px;">
+                        <button  class="btn">
+
+                     
+                        <div class="alert alert-primary d-flex align-items-center" role="alert">
+                                        <i class="fas fa-info-circle fa-2x"></i> &nbsp;&nbsp; Consulta los contenidos de las materias aquí
+                                </div>
+                        </button>
+
+                     </div>
+                             
                      </div>
 
                 </div>
