@@ -916,3 +916,74 @@ document.getElementById("ssi").onclick = function () {
     botonssi();
 }
 
+//alpha
+var alpha = document.getElementById('alpha');
+MQ.StaticMath(alpha);
+
+function botonalpha() {
+    answerMathField.write('\\alpha');
+    answerMathField.focus()
+}
+document.getElementById("alpha").onclick = function () {
+    botonalpha();
+}
+
+//pi_2
+var pi_2 = document.getElementById('pi_2');
+MQ.StaticMath(pi_2);
+
+function botonpi_2() {
+    answerMathField.write('\\pi');
+    answerMathField.focus()
+}
+document.getElementById("pi_2").onclick = function () {
+    botonpi_2();
+}
+
+//beta
+var beta = document.getElementById('beta');
+MQ.StaticMath(beta);
+
+function botonbeta() {
+    answerMathField.write('\\beta');
+    answerMathField.focus()
+}
+document.getElementById("beta").onclick = function () {
+    botonbeta();
+}
+
+//gamma
+var gamma = document.getElementById('gamma');
+MQ.StaticMath(gamma);
+
+function botongamma() {
+    answerMathField.write('\\gamma');
+    answerMathField.focus()
+}
+document.getElementById("gamma").onclick = function () {
+    botongamma();
+}
+
+//delta
+var delta = document.getElementById('delta');
+MQ.StaticMath(delta);
+
+function botondelta() {
+    answerMathField.write('\\delta');
+    answerMathField.focus()
+}
+document.getElementById("delta").onclick = function () {
+    botondelta();
+}
+
+//epsilon
+var epsilon = document.getElementById('epsilon');
+MQ.StaticMath(epsilon);
+
+function botonepsilon() {
+    answerMathField.write('\\epsilon');
+    answerMathField.focus()
+}
+document.getElementById("epsilon").onclick = function () {
+    botonepsilon();
+}
