@@ -319,6 +319,27 @@ def registrarse(request):
         apellido = request.POST['apellido']
         correo = request.POST['correo']
         password = request.POST['contraseña']
+        #--- seguridad contraseña---
+        if len(password) < 8:
+            messages.error(request, 'La contraseña debe tener un mínimo de 8 caracteres. Además de 1 número y 1 letra mayúscula.')
+            return render(request, 'app/registrarse.html')
+
+        num = '0123456789'
+        may = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'
+        flag = True
+        req_1 = False
+        req_2 = False
+        for x in password:
+            if x in num:
+                req_1 = True
+            if x in may:
+                req_2 = True
+        if req_2 and req_1:
+            flag = False
+        if flag:
+            messages.error(request, 'La contraseña debe tener un mínimo de 8 caracteres. Además de 1 número y 1 letra mayúscula.')
+            return render(request, 'app/registrarse.html')
+
         #---Crea Usuario---
         if User.objects.filter(username=correo).exists():
             messages.error(request, 'El usuario ya existe.')
@@ -419,6 +440,7 @@ def comentario_id(request, pk):
     return render(request, 'app/instance.html', contexto)
 
 def eliminarComentario(request, id):
+
     instance = get_object_or_404(Comentario, id=id)
 
     if instance.usuario != request.user:
