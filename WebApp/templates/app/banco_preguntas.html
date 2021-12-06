@@ -9,17 +9,17 @@
 <div class="elContenedor">
     <form method="post" onsubmit="return validacion()">
         {% csrf_token %}
-        <label><h4>Filtrar por temas</h4></label>
+        <label ><h4>Filtrar por temas</h4></label><br>
 
-        <select id="ramo">
+        <select class="btn btn-secondary dropdown-toggle" id="ramo">
             <option selected>Selecione</option>
         </select>
 
-        <select id="materia" name="Tema">
-            <option selected>---------</option>
+        <select class="btn btn-secondary dropdown-toggle" id="materia" name="Tema">
+            <option selected>-----</option>
         </select>
 
-        <input style="margin-top: 20px; width: 100px;"  class="btn btn-primary" type="submit" value="Filtrar">
+        <input style="width: 100px;"  class="btn btn-primary" type="submit" value="Filtrar">
         
     </form>
     <div>
@@ -72,6 +72,7 @@
 
     let combobox_ramo = document.getElementById("ramo");
     let combobox_materia = document.getElementById("materia");
+    
 
     function recorrer(combobox,valores,campo){
         combobox_materia.innerHTML = "";
