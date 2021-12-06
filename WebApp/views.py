@@ -105,11 +105,7 @@ def crearPregunta(request):
             post = form.save(commit=False)
             post.usuario_id = request.user.id
             post.save()
-            messages.success(request, f"Tu pregunta se ha publicado correctamente")
             return redirect('/foro/') 
-        else:
-            for msg in form.error_messages:
-                messages.error(request, form.error_messages[msg])
 
     form = FormForo()
     data={
@@ -434,7 +430,6 @@ def eliminarComentario(request, id):
     if request.method == "POST":
         padre_instance_url = instance.content_object.get_absolute_url()
         instance.delete()
-        messages.success(request, "Comentario eliminado")
         return HttpResponseRedirect(padre_instance_url)
 
     context = {
