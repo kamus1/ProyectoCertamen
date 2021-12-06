@@ -116,8 +116,6 @@ $('#btn4').click(function () {
 
 
 
-
-
 //BOTONES
 
 // raiz cuadrada
@@ -799,15 +797,27 @@ document.getElementById("interseccion").onclick = function () {
 }
 
 //subset
-var subset = document.getElementById('contenido');
+var subset = document.getElementById('contenido_a');
 MQ.StaticMath(subset);
 
 function botonsubset() {
     answerMathField.write('\\subset');
     answerMathField.focus()
 }
-document.getElementById("contenido").onclick = function () {
+document.getElementById("contenido_a").onclick = function () {
     botonsubset();
+}
+
+//subseteq
+var subseteq = document.getElementById('contenido_1');
+MQ.StaticMath(subseteq);
+
+function botonsubseteq() {
+    answerMathField.write('\\subseteq');
+    answerMathField.focus()
+}
+document.getElementById("contenido_1").onclick = function () {
+    botonsubseteq();
 }
 
 //en
@@ -905,3 +915,4 @@ function botonssi() {
 document.getElementById("ssi").onclick = function () {
     botonssi();
 }
+
