@@ -14,10 +14,17 @@ function validacion(){
     var num_preguntras = document.getElementById("num_preg").value;
     
     var num_temas = contar_chekbox();
+    
     if(num_temas > num_preguntras){
         alert("El número de temas seleccionados es mayor que el número de preguntas");
         var validado = false;
     }
+
+    if(num_temas == 0){
+        alert("Debe seleccionar al menos un tema");
+        var validado = false;
+    };
+    
     return validado;
 };
 
