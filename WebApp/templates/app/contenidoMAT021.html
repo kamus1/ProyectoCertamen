@@ -1,0 +1,51 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<div class="titulo">
+    <h1>Contenidos</h1>
+</div>
+
+<div class="elContenedor">
+
+<h3 id="cálculo">Cálculo</h3>
+<ol>
+  <li><strong>Números reales</strong>: Estructura de cuerpo, Axiomas de orden, Valor absoluto, Ecuación cuadrática, Inecuaciones de primer y segundo grado, Axioma del supremo.</li>
+  <li><strong>Funciones</strong>: Gráfica de funciones, Álgebra de funciones, Funciones pares e impares, Funciones crecientes y decrecientes, Composición de funciones, Inyectividad, Sobreyectividad y Biyectividad, Función inversa, Funciones trigonométricas, Funciones sinusoidales.</li>
+  <li><strong>Límites</strong>: Álgebra de límites, Teorema del sándwich, El número ‘e’ como límite.</li>
+  <li><strong>Continuidad</strong>: Álgebra de funciones continuas, Composición de funciones continuas, Discontinuidades, Teorema del valor intermedio.</li>
+  <li><strong>Cálculo diferencial</strong>: Interpretación geométrica, Recta tangente y normal, Interpretación física, Teorema del valor medio, Álgebra de derivadas, Regla de la cadena, Derivadas de orden superior, Teorema de la función implícita, Teorema de la función inversa, Optimización, Gráfica de funciones, Teorema de L’Hôpital.</li>
+</ol>
+
+<h3 id="complemento">Complemento</h3>
+<ol>
+  <li><strong>Lógica proposicional</strong>: Conectivos lógicos y tablas de verdad, Álgebra de proposiciones, Demostraciones, Razonamientos lógicos.</li>
+  <li><strong>Conjuntos</strong>: Álgebra de conjuntos, Cuantificadores, Conjunto potencia, Producto cartesiano, Cardinalidad.</li>
+  <li><strong>Relaciones</strong>: Relaciones de equivalencia, Relaciones de orden.</li>
+  <li><strong>Trigonometría</strong>: Identidades fundamentales, Teorema del seno y coseno, Ecuaciones trigonométricas.</li>
+  <li><strong>Exponencial y logaritmo</strong>: Propiedades algebraicas y cualitativas, Fórmula de crecimiento exponencial.</li>
+  <li><strong>Geometría analítica</strong>: Distancia entre dos puntos, Ecuación de la recta, Circunferencia, Elipse, Parábola e Hipérbola, Lugares geométricos</li>
+  <li><strong>Inducción</strong></li>
+  <li><strong>Sumatorias</strong>: Notación y propiedades, Progresiones aritméticas y geométricas, Teorema del binomio.</li>
+  <li><strong>Números complejos</strong>: Álgebra de números complejos, Conjugado y módulo, Forma polar, Teorema de Moivre, Raíces de la unidad.</li>
+  <li><strong>Polinomios</strong>: Álgebra de polinomios, Raíces, Teorema fundamental del Álgebra, Funciones polinomiales y racionales, Algoritmo de división, Teoremas para la obtención de raíces, Descomposición en fracciones parciales.</li>
+</ol>
+
+</div>
+
+<style>
+    h3 {
+    color: #ED1951;
+}
+
+ol > li{
+    margin: 10px;
+}
+
+#complemento{
+    margin-top: 40px;
+}
+</style>
+{% endblock %}

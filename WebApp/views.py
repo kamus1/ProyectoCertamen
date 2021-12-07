@@ -121,6 +121,11 @@ def guardarPregunta(request):
     
     return render(request, 'app/crearPregunta.html')
 
+
+def contenidoMAT021(request):
+    
+    return render(request, 'app/contenidoMAT021.html')
+
 def home(request):
     puntos_usuarios = profile.objects.order_by('-punctuation')
     if len(puntos_usuarios) > 10:
