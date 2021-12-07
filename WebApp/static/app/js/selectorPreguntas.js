@@ -2,6 +2,12 @@
     var carrusel = document.getElementById("carrusel");
     carrusel.setAttribute("class", "carousel-item active ");
 
+    var myCarousel = document.querySelector('#carouselExampleDark')
+    var carousel = new bootstrap.Carousel(myCarousel, {
+      interval: false,
+      wrap: false
+    })
+    
     //tiempo
     if (!(document.getElementById("time") == null)) {
       var tim = document.getElementById("time").innerHTML.split(":");
@@ -33,11 +39,3 @@
         segundos--;
       }, 1000)
     }
-
-
-
-    var myCarousel = document.querySelector('#carouselExampleDark')
-    var carousel = new bootstrap.Carousel(myCarousel, {
-      interval: false,
-      wrap: false
-    })
