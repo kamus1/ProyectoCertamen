@@ -25,22 +25,73 @@ def generar_id(largo):
 
 def generar_preguntas(num_preg,temas,dif):
     preg_for_tem = {}
+    temas2 = temas.copy()
     for tema in temas:
-        if tema not in preg_for_tem:
-            preg_for_tem[tema] = 0
+        if dif == 'MIXTO': 
+            num_p = PreguntasMate.objects.filter(tema=tema).count()
+                     
+        else:
+            num_p = PreguntasMate.objects.filter(tema=tema,dificultad=dif).count()
 
-    if num_preg == len(temas):
+        
+        if num_p == 0:
+            temas2.remove(tema)
+
+        
+        if (tema not in preg_for_tem) and num_p > 0:
+            
+            preg_for_tem[tema] = [0, num_p]
+
+        
+    if num_preg == len(temas2):
         for tema in preg_for_tem:
-            preg_for_tem[tema] += 1
-    elif num_preg%len(temas) == 0 and num_preg//len(temas) > 0:
-        for tema in temas:
-            preg_for_tem[tema] =  num_preg//len(temas)
+            preg_for_tem[tema][0] += 1
+    elif num_preg%len(temas2) == 0 and num_preg//len(temas2) > 0:
+        for tema in temas2:
+            preg_for_tem[tema][0] =  num_preg//len(temas2)
     else:
-        preguntas_restantes = num_preg-len(temas)*(num_preg//len(temas))
-        for tema in temas:
-            preg_for_tem[tema] =  num_preg//len(temas) 
+        preguntas_restantes = num_preg-len(temas2)*(num_preg//len(temas2))
+        for tema in temas2:
+            preg_for_tem[tema][0] =  num_preg//len(temas2) 
         for e in range(preguntas_restantes):
-            preg_for_tem[choice(temas)] +=1
+            preg_for_tem[choice(temas2)][0] +=1
+
+
+    dis = []
+    sobran = []
+
+    for key in preg_for_tem:
+        preg = preg_for_tem[key][0]
+        preg_disp = preg_for_tem[key][1]
+        pregu_sobran = preg_disp - preg
+
+        if pregu_sobran > 0:
+            dis.append(key)
+        elif pregu_sobran < 0:
+            sobran.append(key)
+        preg_for_tem[key].append(preg_disp-preg)
+
+    i = 0
+    for e in range(len(sobran)):
+        preg_sob = sobran[e-i]
+        num_sob = abs(preg_for_tem[preg_sob][2])
+        preg_for_tem[preg_sob][0] -= num_sob
+        preg_for_tem[preg_sob][2]  = 0
+
+        i2 = 0
+        while i2 < num_sob and dis:
+            reasignacion = choice(dis)
+            preg_for_tem[reasignacion][0] += 1
+            preg_for_tem[reasignacion][2] -= 1
+            if preg_for_tem[reasignacion][2] == 0:
+                dis.remove(reasignacion)
+            i2 += 1
+            
+        sobran.remove(sobran[e-i])
+
+        i += 1
+
+    print()
 
     preguntaRandom = []
     for tema in preg_for_tem:
@@ -48,7 +99,7 @@ def generar_preguntas(num_preg,temas,dif):
             preguntas_db = PreguntasMate.objects.filter(tema=tema).values()
         else:
             preguntas_db = PreguntasMate.objects.filter(tema=tema,dificultad=dif).values()      
-        preguntaRandom.extend(sample(list(preguntas_db),preg_for_tem[tema]))
+        preguntaRandom.extend(sample(list(preguntas_db),preg_for_tem[tema][0]))
 
     preguntas = []
     id_preguntas = []
