@@ -68,10 +68,12 @@ def generar_preguntas(num_preg,temas,dif):
             dis.append(key)
         elif pregu_sobran < 0:
             sobran.append(key)
-        preg_for_tem[key].append(preg_disp-preg)
+        preg_for_tem[key].append(pregu_sobran)
 
-    print(dif)
+    print(dis)
     print(sobran)
+    print(preg_for_tem)
+    print('-'*50)
 
     i = 0
     for e in range(len(sobran)):
