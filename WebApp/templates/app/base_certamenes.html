@@ -105,7 +105,7 @@
                 <div style="padding: auto; margin-bottom: 10px;">
                     <!--botones numero pregunta-->
                     {% for e in preguntas %}
-                    <button type="button" data-bs-target="#carouselExampleDark"
+                    <button style="margin-top: 5px;" type="button" data-bs-target="#carouselExampleDark"
                         data-bs-slide-to="{{forloop.counter|add:-1}}" class="btn btn-primary"
                         aria-label="Slide {{forloop.counter}}">{{forloop.counter}}</button>
                     {% endfor %}
@@ -123,6 +123,10 @@
 
 </div>
 
+<<<<<<< HEAD
 <script src="{% static 'app/js/selectorPreguntas.js' %}"></script>
 
 {% endblock %}
+=======
+{% endblock %}
+>>>>>>> 2cf087f18b2b04b9dabe0cdd4e82661a36ae3887
