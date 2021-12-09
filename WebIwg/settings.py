@@ -80,10 +80,17 @@ WSGI_APPLICATION = 'WebIwg.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'data_base_one',
+        'USER': 'postgres',
+        'PASSWORD': 'STG-v321',
+        'HOST': '127.0.0.1',
+        'DATABASE_PORT': '5432',
     }
 }
+
+
+
 
 POSTGRES_DB = os.environ.get("POSTGRES_DB") #database name
 POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD") # database user password
