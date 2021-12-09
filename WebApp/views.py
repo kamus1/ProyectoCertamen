@@ -28,15 +28,12 @@ def generar_preguntas(num_preg,temas,dif):
     temas2 = temas.copy()
     for tema in temas:
         if dif == 'MIXTO': 
-            num_p = PreguntasMate.objects.filter(tema=tema).count()
-                     
+            num_p = PreguntasMate.objects.filter(tema=tema).count()                     
         else:
             num_p = PreguntasMate.objects.filter(tema=tema,dificultad=dif).count()
-
         
         if num_p == 0:
             temas2.remove(tema)
-
         
         if (tema not in preg_for_tem) and num_p > 0:
             
@@ -60,6 +57,8 @@ def generar_preguntas(num_preg,temas,dif):
     dis = []
     sobran = []
 
+
+
     for key in preg_for_tem:
         preg = preg_for_tem[key][0]
         preg_disp = preg_for_tem[key][1]
@@ -69,7 +68,12 @@ def generar_preguntas(num_preg,temas,dif):
             dis.append(key)
         elif pregu_sobran < 0:
             sobran.append(key)
-        preg_for_tem[key].append(preg_disp-preg)
+        preg_for_tem[key].append(pregu_sobran)
+
+    print(dis)
+    print(sobran)
+    print(preg_for_tem)
+    print('-'*50)
 
     i = 0
     for e in range(len(sobran)):
@@ -91,7 +95,7 @@ def generar_preguntas(num_preg,temas,dif):
 
         i += 1
 
-    print()
+    print(preg_for_tem)
 
     preguntaRandom = []
     for tema in preg_for_tem:
