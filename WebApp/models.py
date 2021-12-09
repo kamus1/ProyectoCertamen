@@ -78,7 +78,7 @@ class PostForo(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     sigla = models.CharField(max_length=7, choices=siglas)
     texto = models.TextField(max_length=2500)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True,max_length=2500)
     tiempo = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
