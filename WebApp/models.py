@@ -77,7 +77,7 @@ class problema(models.Model):
 class PostForo(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     sigla = models.CharField(max_length=7, choices=siglas)
-    texto = models.TextField()
+    texto = models.TextField(max_length=2500)
     slug = models.SlugField(unique=True, blank=True)
     tiempo = models.DateTimeField(auto_now_add=True)
 
@@ -130,7 +130,7 @@ class ComentarioManager(models.Manager):
 class Comentario(models.Model):
 
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, default=1)
-    texto = models.TextField(verbose_name="Comentario")
+    texto = models.TextField(verbose_name="Comentario",max_length=2500)
     
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
