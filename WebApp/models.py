@@ -184,7 +184,7 @@ class PreguntasMate(models.Model):
 #-------------------------- modelo historial de certamenes ---------------------
 class historialCertamen(models.Model):
     id_usuario = models.IntegerField()
-    id_preguntas = models.CharField(max_length=50)
+    id_preguntas = models.CharField(max_length=300)
     fecha = models.DateField(auto_now_add=True)
     hora = models.TimeField(auto_now_add=True)
     estado = models.BooleanField(default=False)
