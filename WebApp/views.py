@@ -416,7 +416,7 @@ def logout_view(request):
     return redirect('/')
 
 def registro_certamenes(request):
-    certamenes = historialCertamen.objects.filter(id_usuario=request.user.id)
+    certamenes = historialCertamen.objects.filter(id_usuario=request.user.id).order_by('-id')
     
     data= {
         'puntos': profile.objects.get(name_id=request.user.id).punctuation,
