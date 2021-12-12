@@ -19,9 +19,9 @@
         <div>
             {% for e in preguntas_incorrectas %}
             <h5>Pregunta:</h5>
-            <div class="preguntas mt-0" style="padding: 20px;">
+            <div class="preguntas mt-0" style="padding: 20px; background-color: #f8d7da;">
                 <p>{{e.0}}</p>
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-light" role="alert">
                     <p>La alternativa correcta es:</p>
                     <p>{{e.1}}</p>
                 </div>
