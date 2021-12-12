@@ -448,6 +448,7 @@ document.getElementById("derivada_parcial_mixta").onclick = function () {
     botonderivada_parcial_mixta();
 }
 
+/* 
 //integral 
 var integral = document.getElementById('int');
 MQ.StaticMath(integral);
@@ -459,6 +460,7 @@ function botonintegral() {
 document.getElementById("int").onclick = function () {
     botonintegral();
 }
+*/
 
 //sumatoria 
 var sumatoria = document.getElementById('sumatoria');
