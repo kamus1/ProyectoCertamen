@@ -15,13 +15,6 @@ from .forms import FormComentarios, FormForo
 from .models import Comentario, PostForo # prueba
 
 #----Funciones para los views----
-def generar_id(largo):
-    letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    numeros = '0123456789'
-    base = letras + numeros
-    id_certamen = sample(base,largo)
-    id_certamen = ''.join(id_certamen)
-    return id_certamen
 
 def generar_preguntas(num_preg,temas,dif):
     preg_for_tem = {}
@@ -290,9 +283,7 @@ def certamen(request):
         return render(request,'app/base_certamenes.html',data)
 
 def matematica(request):
-    id_certamen = generar_id(5) + str(request.user.id)
-    data = {'id_certamen':id_certamen}
-    return render(request,'app/matematica.html',data)
+    return render(request,'app/matematica.html')
 
 #----Resultado del certamen-----
 def resultado(request):

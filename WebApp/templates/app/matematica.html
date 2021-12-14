@@ -29,7 +29,7 @@
               </div>
         {% endfor %}
 
-    <form action="/certame/?id={{id_certamen}}" method="post" onsubmit="return validacion()">
+    <form action="/certame/?id={{id_certamen}}" method="post" onsubmit="return validacion()" id="formulario">
         {% csrf_token %}
 
         <div class="flex-container">
