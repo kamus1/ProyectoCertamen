@@ -19,7 +19,7 @@
                     {{form.as_p}}
                     <button hidden type="button" class="btn btn-warning" id="ver-pregunta">Previzualizar
                         pregunta</button>
-                    <button type="submit" class="btn btn-success"> Publicar </button>
+                    <button type="submit" class="btn btn-success" onclick="javascript:eraseText();"> Publicar </button>
                 </form>
 
                 <p hidden id="previzualizacion-pregunta"></p>
@@ -108,14 +108,13 @@
 
                                     <td type="button" id="derivada_parcial_n"> \frac{\partial\ ^☐}{\partial\ ☐^☐}</td>
 
-                                    <td type="button" id="derivada_parcial_mixta">\frac{\partial^2}{\partial☐\partial☐}
-                                    </td>
+                                    <td type="button" id="derivada_parcial_mixta">\frac{\partial^2}{\partial☐\partial☐}</td>
 
-                                    <td type="button" id="int">\[ \int \]</td>
+                                    <!--<td type="button" id="int"> \int </td>-->
 
-                                    <td type="button" id="sumatoria"> \sum_{☐}^{☐} </td>
+                                    <td type="button" id="sumatoria" style="font-size: 13px;"> \sum_{☐}^{☐} </td>
 
-                                    <td type="button" id="productoria"> \prod_{☐}^{☐} </td>
+                                    <td type="button" id="productoria" style="font-size: 13px;"> \prod_{☐}^{☐} </td>
 
                                     <td type="button" id="limite_1"> \lim_{☐\to☐} </td>
 
@@ -274,5 +273,12 @@
     <script src="{% static 'app/js/editorMathQuill.js' %}"></script>
     
     <script>
+        function eraseText() {
+            var sigla = document.getElementById("id_sigla").value;
+
+            if(sigla == true){
+                document.getElementById("id_texto").value = "";
+            }
+        }
     </script>
     {% endblock %}

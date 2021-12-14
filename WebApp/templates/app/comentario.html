@@ -8,119 +8,127 @@
 
 <div class="elContenedor">
 
-    <div class="preguntas mb-3 mx-auto" style="width: 85%;">
-        <div class="card-header"><i style="float: left; "class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i> <h3 style="display: inline-block; ">{{instance.usuario.first_name}}{{" "}}{{instance.usuario.last_name}}</h3> &nbsp;<h7 style="color: gray; font-size: 15px;">{{instance.tiempo}}</h7></div>
-        <div class="card-body">
-            <h5 class="card-title">
-                <!--posible titulo de la pregunta-->
-            </h5>
-            <p class="card-text">
-                <h4 style="margin-left: 20px;">{{instance.texto}}</h4>
-            </p>
-
-            <h4>
-                <a style="text-decoration: none;">
-                    <div style="text-align: right; margin-right: 20px;"><i class="fas fa-comments "></i>&nbsp;{{ver_comentario.count}}</div>
-                </a>
-            </h4>
-
-            <div style="margin-top: 40px;">
-                
-                <form method="post" style="margin-left: 20px; width: 800px;">
-                    <p>Escribir comentario:</p>
-                    {% csrf_token %}
-                    {{form.as_p}}
-
-                    <button class="btn btn-success" type="submit">
-                        comentar
-                    </button>
-                </form>
-
-            </div>
-            
-            <!---COMENTARIOS    -->
-            {% for ver_comentario in ver_comentario %}
-            <div class="comments-container">
-                <ul id="comments-list" class="comments-list">
-                  <li style="margin-left: -31px; ">
-                    <div class="comment-main-level">
-                      <!-- Avatar -->
-                      <div class="comment-avatar"><img src="https://aula.usm.cl/theme/image.php/moove/core/1638774002/u/f1" alt=""></div>
-                      <!-- Contenedor del Comentario -->
-                      <div class="comment-box">
-                        <div class="comment-head">
-                          <h6 class="comment-name by-author">{{ver_comentario.usuario.first_name}}{{" "}}{{ver_comentario.usuario.last_name}}</h6>
-                          <span>{{ver_comentario.tiempo}}</span>
-                           <!-- icono de responder a la derecha <i class="fa fa-reply"></i>-->
-                        </div>
-                        <div class="comment-content">
-
-                            {{ver_comentario.texto}}
-                            <div style="margin-top: 30px;">
-
-                            {% if request.user == ver_comentario.usuario %}
-                            
-                            <div style="display:inline;"> 
-                                <a href="{% url 'eliminar' ver_comentario.id %}" style="text-decoration: none;">
-                                <br><button class="btn btn-danger">Eliminar Comentario</button> 
-                                </a>
-                            </div>
-                            
-                            {% endif %}
-
-                            <div style="display:inline;">
-                            <button class="b_responder btn btn-outline-primary">
-                                Responder
-                            </button>
-                            
-                            <div class="abrir_caja" style="margin-top: 20px;">
-                                <form method="post" action="">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="padre_identificador" value="{{ver_comentario.id}}">
-                                    {{form}}
-                                    <button type="submit" class="btn btn-success" style="margin-top: 10px;">
-                                        Enviar respuesta
-                                    </button>
-                                </form>
-                            </div>
-                            
-            
-                                
-                            </div>
-                        </div>
-                        </div>
-                        
-                      </div>
-                    </div>
-                    <!-- Respuestas de los comentarios -->
-
-                    
-                    <ul class="comments-list reply-list">
-                        {%for respuesta in ver_comentario.hijo %}
-                      <li>
-                        <!-- Avatar -->
-                        <div class="comment-avatar"><img src="https://aula.usm.cl/theme/image.php/moove/core/1638774002/u/f1" alt=""></div>
-                        <!-- Contenedor del Comentario -->
-                        <div class="comment-box">
-                          <div class="comment-head">
-                            <h6 class="comment-name">{{respuesta.usuario.first_name}}{{" "}}{{respuesta.usuario.last_name}}</h6>
-                            <span><!--HORA DEL COMENTARIO ?---></span>
-                            <!-- icono de responder a la derecha <i class="fa fa-reply"></i>-->
-                          </div>
-                          <div class="comment-content">
-                            {{respuesta.texto}}
-                          </div>
-                        </div>
-                      </li>
-                      {% endfor %}
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              {% endfor %}
-              
-        </div>
+  <div class="preguntas mb-3 mx-auto" style="width: 85%;">
+    <div class="card-header"><i style="float: left; " class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i>
+      <h5 style="display: inline-block; ">{{instance.usuario.first_name}}{{" "}}{{instance.usuario.last_name}}</h5>
+      &nbsp;<h7 style="color: gray; font-size: 13px;">{{instance.tiempo}}<h7>
     </div>
+    <div class="card-body">
+      <h5 class="card-title">
+        <!--posible titulo de la pregunta-->
+      </h5>
+      <p class="card-text">
+        <h6 style="margin-left: 20px; word-wrap: break-word;">{{instance.texto}}</h6>
+      </p>
+
+      <h4>
+        <a style="text-decoration: none;">
+          <div style="text-align: right; margin-right: 20px;"><i
+              class="fas fa-comments "></i>&nbsp;{{ver_comentario.count}}</div>
+        </a>
+      </h4>
+
+      <div style="margin-top: 40px;">
+
+        <form method="post" style="margin-left: 20px; width: 800px;">
+          <p>Escribir comentario:</p>
+          {% csrf_token %}
+          {{form.as_p}}
+
+          <button class="btn btn-success" type="submit">
+            comentar
+          </button>
+        </form>
+
+      </div>
+
+      <!---COMENTARIOS    -->
+      {% for ver_comentario in ver_comentario %}
+      <div class="comments-container">
+        <ul id="comments-list" class="comments-list">
+          <li style="margin-left: -31px; ">
+            <div class="comment-main-level">
+              <!-- Avatar -->
+              <div class="comment-avatar"><img src="https://aula.usm.cl/theme/image.php/moove/core/1638774002/u/f1"
+                  alt=""></div>
+              <!-- Contenedor del Comentario -->
+              <div class="comment-box">
+                <div class="comment-head">
+                  <h6 class="comment-name">
+                    {{ver_comentario.usuario.first_name}}{{" "}}{{ver_comentario.usuario.last_name}}</h6>
+                  <span>{{ver_comentario.tiempo}}</span>
+                  <!-- icono de responder a la derecha <i class="fa fa-reply"></i>-->
+                </div>
+                <div class="comment-content">
+
+                  <p style="word-wrap: break-word;"> {{ver_comentario.texto}}</p>
+                  <div style="margin-top: 30px;">
+
+                    {% if request.user == ver_comentario.usuario %}
+
+                    <div style="display:inline;">
+                      <a href="{% url 'eliminar' ver_comentario.id %}" style="text-decoration: none;">
+                        <br><button class="btn btn-danger">Eliminar Comentario</button>
+                      </a>
+                    </div>
+
+                    {% endif %}
+
+                    <div style="display:inline;">
+                      <button class="b_responder btn btn-outline-primary">
+                        Responder
+                      </button>
+
+                      <div class="abrir_caja" style="margin-top: 20px;">
+                        <form method="post" action="">
+                          {% csrf_token %}
+                          <input type="hidden" name="padre_identificador" value="{{ver_comentario.id}}">
+                          {{form}}
+                          <button type="submit" class="btn btn-success" style="margin-top: 10px;">
+                            Enviar respuesta
+                          </button>
+                        </form>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!-- Respuestas de los comentarios -->
+
+
+            <ul class="comments-list reply-list">
+              {%for respuesta in ver_comentario.hijo %}
+              <li>
+                <!-- Avatar -->
+                <div class="comment-avatar"><img src="https://aula.usm.cl/theme/image.php/moove/core/1638774002/u/f1"
+                    alt=""></div>
+                <!-- Contenedor del Comentario -->
+                <div class="comment-box">
+                  <div class="comment-head">
+                    <h6 class="comment-name">{{respuesta.usuario.first_name}}{{" "}}{{respuesta.usuario.last_name}}</h6>
+                    <span>
+                      <!--HORA DEL COMENTARIO ?---></span>
+                    <!-- icono de responder a la derecha <i class="fa fa-reply"></i>-->
+                  </div>
+                  <div class="comment-content" style="word-wrap: break-word;">
+                    {{respuesta.texto}}
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+        </ul>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
 </div>
 
 <style>
@@ -128,10 +136,10 @@
 </style>
 
 <script>
-    $('.b_responder').click(function (e) {
-        e.preventDefault();
-        $(this).next('.abrir_caja').fadeToggle()
-    })
+  $('.b_responder').click(function (e) {
+    e.preventDefault();
+    $(this).next('.abrir_caja').fadeToggle()
+  })
 </script>
 
 

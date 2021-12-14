@@ -77,8 +77,8 @@ class problema(models.Model):
 class PostForo(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     sigla = models.CharField(max_length=7, choices=siglas)
-    texto = models.TextField()
-    slug = models.SlugField(unique=True, blank=True)
+    texto = models.TextField(max_length=2500)
+    slug = models.SlugField(unique=True, blank=True,max_length=2500)
     tiempo = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
@@ -130,7 +130,7 @@ class ComentarioManager(models.Manager):
 class Comentario(models.Model):
 
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, default=1)
-    texto = models.TextField(verbose_name="Comentario")
+    texto = models.TextField(verbose_name="Comentario",max_length=2500)
     
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
@@ -184,7 +184,7 @@ class PreguntasMate(models.Model):
 #-------------------------- modelo historial de certamenes ---------------------
 class historialCertamen(models.Model):
     id_usuario = models.IntegerField()
-    id_preguntas = models.CharField(max_length=50)
+    id_preguntas = models.CharField(max_length=300)
     fecha = models.DateField(auto_now_add=True)
     hora = models.TimeField(auto_now_add=True)
     estado = models.BooleanField(default=False)
