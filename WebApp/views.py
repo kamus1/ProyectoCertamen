@@ -212,7 +212,7 @@ def home(request):
 
 #----Generador de certamenes----
 def certamen(request):
-    id_certamen = request.GET.get('id')
+    id_certamen = request.GET.get('id') + str(request.user.id)
     certamen_h = historialCertamen.objects.filter(id_certamen=id_certamen)
     if (certamen_h.exists() == False):#Si el certamen no esta creado lo crea y lo guarda en el historial 
         if request.method == 'POST':
@@ -232,7 +232,8 @@ def certamen(request):
             if disponible:
 
                 #----Crear el certamen en la DB para su posterior verificacion----
-                historialCertamen.objects.create(id_usuario=request.user.id ,id_preguntas=id_preguntas,estado=False,id_certamen=id_certamen)
+                num_preguntas = len(id_preguntas)
+                historialCertamen.objects.create(id_usuario=request.user.id ,id_preguntas=id_preguntas,estado=False,id_certamen=id_certamen,n_preguntas=num_preguntas)
 
                 #----Data de html y envio al mismo----
                 data = {'clase':'MAT021',
@@ -344,7 +345,6 @@ def resultado(request):
             
             certamen.estado = True
             certamen.alternativa_marcadas = alternativas_marcadas
-            certamen.n_preguntas = n_preguntas
             certamen.n_correctas = str(n_preguntasCorrectas)+'/'+str(n_preguntas)
             certamen.puntos = puntos
             certamen.save()
