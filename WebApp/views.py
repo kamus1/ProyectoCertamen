@@ -39,92 +39,103 @@ def generar_preguntas(num_preg,temas,dif):
             
             preg_for_tem[tema] = [0, num_p]
 
-        
-    if num_preg == len(temas2):
-        for tema in preg_for_tem:
-            preg_for_tem[tema][0] += 1
-    elif num_preg%len(temas2) == 0 and num_preg//len(temas2) > 0:
-        for tema in temas2:
-            preg_for_tem[tema][0] =  num_preg//len(temas2)
-    else:
-        preguntas_restantes = num_preg-len(temas2)*(num_preg//len(temas2))
-        for tema in temas2:
-            preg_for_tem[tema][0] =  num_preg//len(temas2) 
-        for e in range(preguntas_restantes):
-            preg_for_tem[choice(temas2)][0] +=1
-
-
-    dis = []
-    sobran = []
-
-
-
-    for key in preg_for_tem:
-        preg = preg_for_tem[key][0]
-        preg_disp = preg_for_tem[key][1]
-        pregu_sobran = preg_disp - preg
-
-        if pregu_sobran > 0:
-            dis.append(key)
-        elif pregu_sobran < 0:
-            sobran.append(key)
-        preg_for_tem[key].append(pregu_sobran)
-
-    print(dis)
-    print(sobran)
-    print(preg_for_tem)
-    print('-'*50)
-
-    i = 0
-    for e in range(len(sobran)):
-        preg_sob = sobran[e-i]
-        num_sob = abs(preg_for_tem[preg_sob][2])
-        preg_for_tem[preg_sob][0] -= num_sob
-        preg_for_tem[preg_sob][2]  = 0
-
-        i2 = 0
-        while i2 < num_sob and dis:
-            reasignacion = choice(dis)
-            preg_for_tem[reasignacion][0] += 1
-            preg_for_tem[reasignacion][2] -= 1
-            if preg_for_tem[reasignacion][2] == 0:
-                dis.remove(reasignacion)
-            i2 += 1
-            
-        sobran.remove(sobran[e-i])
-
-        i += 1
-
-    print(preg_for_tem)
-
-    preguntaRandom = []
-    for tema in preg_for_tem:
-        if dif == 'MIXTO':
-            preguntas_db = PreguntasMate.objects.filter(tema=tema).values()
+    if len(temas2) != 0:
+        if num_preg == len(temas2):
+            for tema in preg_for_tem:
+                preg_for_tem[tema][0] += 1
+        elif num_preg%len(temas2) == 0 and num_preg//len(temas2) > 0:
+            for tema in temas2:
+                preg_for_tem[tema][0] =  num_preg//len(temas2)
         else:
-            preguntas_db = PreguntasMate.objects.filter(tema=tema,dificultad=dif).values()      
-        preguntaRandom.extend(sample(list(preguntas_db),preg_for_tem[tema][0]))
+            preguntas_restantes = num_preg-len(temas2)*(num_preg//len(temas2))
+            for tema in temas2:
+                preg_for_tem[tema][0] =  num_preg//len(temas2) 
+            for e in range(preguntas_restantes):
+                preg_for_tem[choice(temas2)][0] +=1
 
-    preguntas = []
-    id_preguntas = []
-    for p in preguntaRandom:
-        e = {'id':'',
-            'pregunta':'',
-            'A':'',
-            'B':'',
-            'C':'',
-            'D':'',
-            'E':'',}
-        e['id'] = p['id']
-        id_preguntas.append(p['id'])
-        e['pregunta'] = p['pregunta']
-        e['a'] = p['alternativa_a']
-        e['b'] = p['alternativa_b']
-        e['c'] = p['alternativa_c']
-        e['d'] = p['alternativa_d']
-        e['e'] = p['alternativa_e']  
-        preguntas.append(e)
-    return preguntas, id_preguntas
+
+        dis = []
+        sobran = []
+
+
+
+        for key in preg_for_tem:
+            preg = preg_for_tem[key][0]
+            preg_disp = preg_for_tem[key][1]
+            pregu_sobran = preg_disp - preg
+
+            if pregu_sobran > 0:
+                dis.append(key)
+            elif pregu_sobran < 0:
+                sobran.append(key)
+            preg_for_tem[key].append(pregu_sobran)
+
+    
+        temas_sin_preg = len(temas) - len(temas2) 
+        preguntas_reasignadas = 0
+        i = 0
+
+        for e in range(len(sobran)):
+            preg_sob = sobran[e-i]
+            num_sob = abs(preg_for_tem[preg_sob][2])
+            preg_for_tem[preg_sob][0] -= num_sob
+            preg_for_tem[preg_sob][2]  = 0
+
+            i2 = 0
+            while i2 < num_sob and dis:
+                reasignacion = choice(dis)
+                preg_for_tem[reasignacion][0] += 1
+                preguntas_reasignadas += 1
+                preg_for_tem[reasignacion][2] -= 1
+                if preg_for_tem[reasignacion][2] == 0:
+                    dis.remove(reasignacion)
+                i2 += 1
+                
+            sobran.remove(sobran[e-i])
+
+            i += 1
+
+        preguntaRandom = []
+        for tema in preg_for_tem:
+            if dif == 'MIXTO':
+                preguntas_db = PreguntasMate.objects.filter(tema=tema).values()
+            else:
+                preguntas_db = PreguntasMate.objects.filter(tema=tema,dificultad=dif).values()      
+            preguntaRandom.extend(sample(list(preguntas_db),preg_for_tem[tema][0]))
+
+        preguntas = []
+        id_preguntas = []
+        for p in preguntaRandom:
+            e = {'id':'',
+                'pregunta':'',
+                'A':'',
+                'B':'',
+                'C':'',
+                'D':'',
+                'E':'',}
+            e['id'] = p['id']
+            id_preguntas.append(p['id'])
+            e['pregunta'] = p['pregunta']
+            e['a'] = p['alternativa_a']
+            e['b'] = p['alternativa_b']
+            e['c'] = p['alternativa_c']
+            e['d'] = p['alternativa_d']
+            e['e'] = p['alternativa_e']  
+            preguntas.append(e)
+
+
+        if temas_sin_preg != 0 and preguntas_reasignadas != 0:
+            texto = 'Preguntas reasignadas: ' + str(preguntas_reasignadas) + '\n Temas sin preguntas: ' + str(temas_sin_preg)
+        elif temas_sin_preg != 0 and preguntas_reasignadas == 0:
+            texto = 'Temas sin preguntas: ' + str(temas_sin_preg)
+        elif temas_sin_preg == 0 and preguntas_reasignadas != 0:
+            texto = 'Preguntas reasignadas: ' + str(preguntas_reasignadas)
+        else:
+            texto = None
+    
+        return preguntas, id_preguntas , True, texto
+    else:
+        return [], [], False , None
 
 def recuperar_preguntas(id_preguntas_c):
     preguntas_db = []
@@ -223,19 +234,28 @@ def certamen(request):
                 if e not in ('csrfmiddlewaretoken','tiempo','number_of_questions','dificultad'):
                     temas.append(e)
             #----Generar preguntas----
-            preguntas,id_preguntas = generar_preguntas(num_preg,temas,dificultad)
+            preguntas, id_preguntas, disponible, estadisticas = generar_preguntas(num_preg,temas,dificultad)
 
-            #----Crear el certamen en la DB para su posterior verificacion----
-            historialCertamen.objects.create(id_usuario=request.user.id ,id_preguntas=id_preguntas,estado=False,id_certamen=id_certamen)
+            if disponible:
 
-            #----Data de html y envio al mismo----
-            data = {'clase':'MAT021',
-            'preguntas':preguntas,
-            'tiempo':time,
-            'estatus':False,
-            'id':id_certamen,
-            }
-            return render(request,'app/base_certamenes.html',data)
+                #----Crear el certamen en la DB para su posterior verificacion----
+                historialCertamen.objects.create(id_usuario=request.user.id ,id_preguntas=id_preguntas,estado=False,id_certamen=id_certamen)
+
+                #----Data de html y envio al mismo----
+                data = {'clase':'MAT021',
+                'preguntas':preguntas,
+                'tiempo':time,
+                'estatus':False,
+                'id':id_certamen,
+                }
+                
+                if estadisticas != None:
+                    messages.info(request,estadisticas)
+
+                return render(request,'app/base_certamenes.html',data)
+            else:
+                messages.info(request, 'No hay preguntas disponibles para el tema o los temas seleccionados')
+                return redirect('/MAT021/')
 
     elif certamen_h.exists() and certamen_h[0].estado == False :#Si el certamen ya esta creado pero no ha sido terminado
         id_preguntas_c = certamen_h[0].id_preguntas

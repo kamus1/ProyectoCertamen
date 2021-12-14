@@ -3,6 +3,13 @@
 
 {% block contenido %}
 
+<div>
+    {% for message in messages  %}
+            {{message | linebreaks}}
+    {% endfor %}
+</div>
+
+
 <div class="elContenedor">
     <form action="/resultados/?id={{id}}" method="post" name="formulario"><br>
         {% csrf_token %}
@@ -122,5 +129,7 @@
     </form>
 
 </div>
+
+<script src="{% static 'app/js/selectorPreguntas.js' %}"></script>
 
 {% endblock %}
