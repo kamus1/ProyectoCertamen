@@ -9,6 +9,13 @@
     <p>Ingrese las especificaciones para generar el certamen</p>
 </div>
 
+<div>
+        {% for message in messages  %}
+                {{message}}
+        {% endfor %}
+</div>
+
+
 <div class="elContenedor">
     <form action="/certame/?id={{id_certamen}}" method="post" onsubmit="return validacion()">
         {% csrf_token %}
