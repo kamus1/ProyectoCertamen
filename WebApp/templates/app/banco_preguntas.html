@@ -25,13 +25,13 @@
     <div>
         {% for pregunta in preguntas %}
         <div class="preguntas mb-3" style="max-width: 800px;">
-            <div class="card-header">Pregunta número {{forloop.counter}} </div>
+            <div class="card-header">Pregunta número {{pregunta.id}} </div>
             <div class="card-body">
                 <h5 class="card-title">
                     <!--posible titulo de la pregunta-->
                 </h5>
                 <p class="card-text">
-                    {{ pregunta.pregunta }}
+                    {{ pregunta.pregunta|linebreaks }}
                 </p>
 
             </div>

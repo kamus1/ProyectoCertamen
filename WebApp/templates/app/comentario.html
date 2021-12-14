@@ -18,7 +18,7 @@
         <!--posible titulo de la pregunta-->
       </h5>
       <p class="card-text">
-        <h6 style="margin-left: 20px; word-wrap: break-word;">{{instance.texto}}</h6>
+        <h6 style="margin-left: 20px; word-wrap: break-word;">{{instance.texto|linebreaks }}</h6>
       </p>
 
       <h4>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="comment-content">
 
-                  <p style="word-wrap: break-word;"> {{ver_comentario.texto}}</p>
+                  <p style="word-wrap: break-word;"> {{ver_comentario.texto|linebreaks }}</p>
                   <div style="margin-top: 30px;">
 
                     {% if request.user == ver_comentario.usuario %}
@@ -116,7 +116,7 @@
                     <!-- icono de responder a la derecha <i class="fa fa-reply"></i>-->
                   </div>
                   <div class="comment-content" style="word-wrap: break-word;">
-                    {{respuesta.texto}}
+                    {{respuesta.texto|linebreaks }}
                   </div>
                 </div>
               </li>
