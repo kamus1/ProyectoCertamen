@@ -1,4 +1,5 @@
 from random import choice
+import time
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.expressions import Value
 from django.db.models.manager import EmptyManager
@@ -8,13 +9,40 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from WebApp.models import PreguntasMate, PostForo, profile, historialCertamen
+from WebApp.models import PreguntasMate, PostForo, profile, historialCertamen, Comentario
 from random import sample
 from .forms import FormComentarios, FormForo
 
-from .models import Comentario, PostForo # prueba
 
 #----Funciones para los views----
+def sumar_hora(horas_sumar):
+    sumar = horas_sumar.split(':')
+    hora=time.strftime('%H:%M:%S', time.localtime())
+    hora =hora.split(':')
+
+
+    segun_actual = int(hora[0])*3600 + int(hora[1])*60 + int(hora[2])
+    segun_sumar  = int(sumar[0])*3600 + int(sumar[1])*60
+
+    new_seg = segun_actual + segun_sumar
+
+    hora = new_seg//3600
+    minutos = (new_seg%3600)//60
+    segundos = new_seg%60
+
+    if hora > 23:
+        hora = hora - 24
+
+    if hora < 10:
+        hora = '0'+str(hora)
+    if minutos < 10:
+        minutos = '0'+str(minutos)
+    if segundos < 10:
+        segundos = '0'+str(segundos)
+    
+    new_hora = str(hora)+':'+str(minutos)+':'+str(segundos)
+
+    return new_hora
 
 def generar_preguntas(num_preg,temas,dif):
     preg_for_tem = {}
@@ -212,14 +240,27 @@ def home(request):
 
 #----Generador de certamenes----
 def certamen(request):
-    id_certamen = request.GET.get('id') + str(request.user.id)
+    
+    if request.method == 'POST':
+        id_certamen = request.GET.get('id') + str(request.user.id)
+    else:
+        id_certamen = request.GET.get('id')
+
+
     certamen_h = historialCertamen.objects.filter(id_certamen=id_certamen)
     if (certamen_h.exists() == False):#Si el certamen no esta creado lo crea y lo guarda en el historial 
         if request.method == 'POST':
             #----Extraer datos del POST----
             datos = request.POST
             num_preg = int(request.POST['number_of_questions'])
-            time = request.POST['tiempo']
+            time_selec = request.POST['tiempo']
+            if time_selec != '':
+                hora_termino = sumar_hora(time_selec)
+            else:
+                hora_termino = ''
+
+            
+
             dificultad = request.POST['dificultad']
             #----Separar temas----
             temas = []
@@ -233,12 +274,12 @@ def certamen(request):
 
                 #----Crear el certamen en la DB para su posterior verificacion----
                 num_preguntas = len(id_preguntas)
-                historialCertamen.objects.create(id_usuario=request.user.id ,id_preguntas=id_preguntas,estado=False,id_certamen=id_certamen,n_preguntas=num_preguntas)
+                historialCertamen.objects.create(id_usuario=request.user.id ,id_preguntas=id_preguntas,estado=False,id_certamen=id_certamen,n_preguntas=num_preguntas,hora_termino=hora_termino)
 
                 #----Data de html y envio al mismo----
                 data = {'clase':'MAT021',
                 'preguntas':preguntas,
-                'tiempo':time,
+                'tiempo':hora_termino,
                 'estatus':False,
                 'id':id_certamen,
                 }
@@ -255,12 +296,12 @@ def certamen(request):
         id_preguntas_c = certamen_h[0].id_preguntas
         id_preguntas_c = id_preguntas_c[1:-1]
         id_preguntas_c = id_preguntas_c.split(',')
-        
+        hora_termino = certamen_h[0].hora_termino
         preguntas = recuperar_preguntas(id_preguntas_c)
 
         data = {'clase':'MAT021',
         'preguntas':preguntas,
-        'tiempo':'',
+        'tiempo':hora_termino,
         'estatus':False,
         'id':id_certamen,
         }
