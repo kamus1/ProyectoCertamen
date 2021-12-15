@@ -193,3 +193,4 @@ class historialCertamen(models.Model):
     n_correctas = models.CharField(max_length=20, default="")
     puntos = models.IntegerField(default=0)
     alternativa_marcadas = models.CharField(max_length=100, default="")
+    hora_termino = models.CharField(max_length=11, default="")
