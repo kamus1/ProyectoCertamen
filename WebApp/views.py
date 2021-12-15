@@ -222,9 +222,10 @@ def home(request):
     for usuario in puntos_usuarios:
         id_usuario = usuario.name_id
         puntuacion = usuario.punctuation
+        elo = usuario.elo
         nombre = User.objects.get(id=id_usuario).first_name
         apellido = User.objects.get(id=id_usuario).last_name
-        nombre_completo = nombre + ' ' + apellido
+        nombre_completo = nombre + ' ' + apellido + ' (' + elo + ')'
         top.append((nombre_completo,puntuacion))
 
     post = PostForo.objects.all()[:2]
