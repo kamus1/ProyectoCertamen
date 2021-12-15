@@ -13,7 +13,6 @@ from WebApp.models import PreguntasMate, PostForo, profile, historialCertamen, C
 from random import sample
 from .forms import FormComentarios, FormForo
 
-
 #----Funciones para los views----
 def sumar_hora(horas_sumar):
     sumar = horas_sumar.split(':')
@@ -380,10 +379,29 @@ def resultado(request):
 
         certamen = historialCertamen.objects.get(id_certamen=data['id'])
         if certamen.estado == False:
+            elo = (
+                ('Mechon',0,499),
+                ('Mechon junior',500,1999),
+                ('Mechon senior',2000,3999),
+                ('mechon dorado',4000 ,6499),
+                ('Mechon master',6500,9499),
+            )
             perfil_usuario = profile.objects.filter(name_id = request.user.id)
             puntos_usuario = perfil_usuario[0].punctuation
-            perfil_usuario.update(punctuation=puntos_usuario+puntos)
+            puntos_actualizados = puntos_usuario+puntos 
             
+            
+            elo_encontrado = False
+            i = 0
+            while elo_encontrado != True:
+                if puntos_actualizados >= elo[i][1] and puntos_actualizados <= elo[i][2]:
+                    elo_encontrado = True
+                    if elo[i][0] != perfil_usuario[0].elo:
+                        perfil_usuario.update(punctuation=puntos_actualizados,elo=elo[i][0])
+                    else:
+                        perfil_usuario.update(punctuation=puntos_actualizados)
+                i += 1
+
             certamen.estado = True
             certamen.alternativa_marcadas = alternativas_marcadas
             certamen.n_correctas = str(n_preguntasCorrectas)+'/'+str(n_preguntas)
@@ -406,9 +424,12 @@ def mi_perfil(request):
     nombre_usuario = request.user.first_name + ' ' + request.user.last_name
     id = request.user.id
     puntos = profile.objects.filter(name_id=id).values()[0]['punctuation']
+    elo = profile.objects.filter(name_id=id).values()[0]['elo']
+
     contexto = { 'UserName' : nombre_usuario
                 ,'correo' : correo
-                ,'puntos' : puntos}
+                ,'puntos' : puntos
+                ,'elo' : elo}
 
     return render(request,'app/mi_perfil.html',contexto)
 
