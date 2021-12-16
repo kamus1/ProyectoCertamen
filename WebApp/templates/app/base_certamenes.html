@@ -120,9 +120,11 @@
 
             <div style="margin-top: 104px;">
                 <div>
+                    <!-- label invisible -->
+                    <label hidden id="hora_termin" >{{tiempo}}</label>
                     {% if tiempo %}
                     <h4>Tiempo:</h4>
-                    <h1 id="time">{{tiempo}}:00</h1>
+                    <h1 id="time"></h1>
                     {% endif %}
                 </div>
 

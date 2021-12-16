@@ -57,6 +57,7 @@ class profile(models.Model):
     name = models.OneToOneField(User, on_delete=models.CASCADE)
     resolved_questions = models.IntegerField(default=0)
     punctuation = models.IntegerField(default=0)
+    elo = models.CharField(max_length=30, default="Mechon")
 
 def create_profile(sender, instance, created, *args, **kwargs):
     if created:
@@ -193,3 +194,4 @@ class historialCertamen(models.Model):
     n_correctas = models.CharField(max_length=20, default="")
     puntos = models.IntegerField(default=0)
     alternativa_marcadas = models.CharField(max_length=100, default="")
+    hora_termino = models.CharField(max_length=11, default="")

@@ -1,4 +1,5 @@
 from random import choice
+import time
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.expressions import Value
 from django.db.models.manager import EmptyManager
@@ -8,20 +9,39 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from WebApp.models import PreguntasMate, PostForo, profile, historialCertamen
+from WebApp.models import PreguntasMate, PostForo, profile, historialCertamen, Comentario
 from random import sample
 from .forms import FormComentarios, FormForo
 
-from .models import Comentario, PostForo # prueba
-
 #----Funciones para los views----
-def generar_id(largo):
-    letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    numeros = '0123456789'
-    base = letras + numeros
-    id_certamen = sample(base,largo)
-    id_certamen = ''.join(id_certamen)
-    return id_certamen
+def sumar_hora(horas_sumar):
+    sumar = horas_sumar.split(':')
+    hora=time.strftime('%H:%M:%S', time.localtime())
+    hora =hora.split(':')
+
+
+    segun_actual = int(hora[0])*3600 + int(hora[1])*60 + int(hora[2])
+    segun_sumar  = int(sumar[0])*3600 + int(sumar[1])*60
+
+    new_seg = segun_actual + segun_sumar
+
+    hora = new_seg//3600
+    minutos = (new_seg%3600)//60
+    segundos = new_seg%60
+
+    if hora > 23:
+        hora = hora - 24
+
+    if hora < 10:
+        hora = '0'+str(hora)
+    if minutos < 10:
+        minutos = '0'+str(minutos)
+    if segundos < 10:
+        segundos = '0'+str(segundos)
+    
+    new_hora = str(hora)+':'+str(minutos)+':'+str(segundos)
+
+    return new_hora
 
 def generar_preguntas(num_preg,temas,dif):
     preg_for_tem = {}
@@ -202,9 +222,10 @@ def home(request):
     for usuario in puntos_usuarios:
         id_usuario = usuario.name_id
         puntuacion = usuario.punctuation
+        elo = usuario.elo
         nombre = User.objects.get(id=id_usuario).first_name
         apellido = User.objects.get(id=id_usuario).last_name
-        nombre_completo = nombre + ' ' + apellido
+        nombre_completo = nombre + ' ' + apellido + ' (' + elo + ')'
         top.append((nombre_completo,puntuacion))
 
     post = PostForo.objects.all()[:2]
@@ -219,14 +240,27 @@ def home(request):
 
 #----Generador de certamenes----
 def certamen(request):
-    id_certamen = request.GET.get('id')
+    
+    if request.method == 'POST':
+        id_certamen = request.GET.get('id') + str(request.user.id)
+    else:
+        id_certamen = request.GET.get('id')
+
+
     certamen_h = historialCertamen.objects.filter(id_certamen=id_certamen)
     if (certamen_h.exists() == False):#Si el certamen no esta creado lo crea y lo guarda en el historial 
         if request.method == 'POST':
             #----Extraer datos del POST----
             datos = request.POST
             num_preg = int(request.POST['number_of_questions'])
-            time = request.POST['tiempo']
+            time_selec = request.POST['tiempo']
+            if time_selec != '':
+                hora_termino = sumar_hora(time_selec)
+            else:
+                hora_termino = ''
+
+            
+
             dificultad = request.POST['dificultad']
             #----Separar temas----
             temas = []
@@ -239,12 +273,13 @@ def certamen(request):
             if disponible:
 
                 #----Crear el certamen en la DB para su posterior verificacion----
-                historialCertamen.objects.create(id_usuario=request.user.id ,id_preguntas=id_preguntas,estado=False,id_certamen=id_certamen)
+                num_preguntas = len(id_preguntas)
+                historialCertamen.objects.create(id_usuario=request.user.id ,id_preguntas=id_preguntas,estado=False,id_certamen=id_certamen,n_preguntas=num_preguntas,hora_termino=hora_termino)
 
                 #----Data de html y envio al mismo----
                 data = {'clase':'MAT021',
                 'preguntas':preguntas,
-                'tiempo':time,
+                'tiempo':hora_termino,
                 'estatus':False,
                 'id':id_certamen,
                 }
@@ -261,12 +296,12 @@ def certamen(request):
         id_preguntas_c = certamen_h[0].id_preguntas
         id_preguntas_c = id_preguntas_c[1:-1]
         id_preguntas_c = id_preguntas_c.split(',')
-        
+        hora_termino = certamen_h[0].hora_termino
         preguntas = recuperar_preguntas(id_preguntas_c)
 
         data = {'clase':'MAT021',
         'preguntas':preguntas,
-        'tiempo':'',
+        'tiempo':hora_termino,
         'estatus':False,
         'id':id_certamen,
         }
@@ -290,9 +325,7 @@ def certamen(request):
         return render(request,'app/base_certamenes.html',data)
 
 def matematica(request):
-    id_certamen = generar_id(5) + str(request.user.id)
-    data = {'id_certamen':id_certamen}
-    return render(request,'app/matematica.html',data)
+    return render(request,'app/matematica.html')
 
 #----Resultado del certamen-----
 def resultado(request):
@@ -347,13 +380,31 @@ def resultado(request):
 
         certamen = historialCertamen.objects.get(id_certamen=data['id'])
         if certamen.estado == False:
+            elo = (
+                ('Mechon',0,499),
+                ('Mechon junior',500,1999),
+                ('Mechon senior',2000,3999),
+                ('mechon dorado',4000 ,6499),
+                ('Mechon master',6500,9499),
+            )
             perfil_usuario = profile.objects.filter(name_id = request.user.id)
             puntos_usuario = perfil_usuario[0].punctuation
-            perfil_usuario.update(punctuation=puntos_usuario+puntos)
+            puntos_actualizados = puntos_usuario+puntos 
             
+            
+            elo_encontrado = False
+            i = 0
+            while elo_encontrado != True:
+                if puntos_actualizados >= elo[i][1] and puntos_actualizados <= elo[i][2]:
+                    elo_encontrado = True
+                    if elo[i][0] != perfil_usuario[0].elo:
+                        perfil_usuario.update(punctuation=puntos_actualizados,elo=elo[i][0])
+                    else:
+                        perfil_usuario.update(punctuation=puntos_actualizados)
+                i += 1
+
             certamen.estado = True
             certamen.alternativa_marcadas = alternativas_marcadas
-            certamen.n_preguntas = n_preguntas
             certamen.n_correctas = str(n_preguntasCorrectas)+'/'+str(n_preguntas)
             certamen.puntos = puntos
             certamen.save()
@@ -374,9 +425,12 @@ def mi_perfil(request):
     nombre_usuario = request.user.first_name + ' ' + request.user.last_name
     id = request.user.id
     puntos = profile.objects.filter(name_id=id).values()[0]['punctuation']
+    elo = profile.objects.filter(name_id=id).values()[0]['elo']
+
     contexto = { 'UserName' : nombre_usuario
                 ,'correo' : correo
-                ,'puntos' : puntos}
+                ,'puntos' : puntos
+                ,'elo' : elo}
 
     return render(request,'app/mi_perfil.html',contexto)
 

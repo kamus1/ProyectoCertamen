@@ -29,7 +29,7 @@
               </div>
         {% endfor %}
 
-    <form action="/certame/?id={{id_certamen}}" method="post" onsubmit="return validacion()">
+    <form action="/certame/?id={{id_certamen}}" method="post" onsubmit="return validacion()" id="formulario">
         {% csrf_token %}
 
         <div class="flex-container">
@@ -96,7 +96,7 @@
 
                     <div class="md-form mx-3 my-3 " id="time" style="display: none;">
                         <label for="timeSelec">Selecciona tu tiempo:</label>
-                        <input class="form-control w-25 " type="time" id="timeSelec" min="00:10" value="" name="tiempo">
+                        <input class="form-control w-25 " type="time" id="timeSelec" min="00:01" value="" name="tiempo">
                     </div>
 
                     <div class="md-form mx-3 my-3">
