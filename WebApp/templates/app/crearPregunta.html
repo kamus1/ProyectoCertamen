@@ -1,8 +1,4 @@
-{% extends 'app/base.html' %}
-
-{% load static %}
-
-{% block contenido %}
+{% extends 'app/base.html' %} {% load static %} {% block contenido %}
 
 <div class="titulo">
   <h1>DEV ROOM</h1>
@@ -15,176 +11,195 @@
 <p>Esta es otra prueba</p>
 <!-- Contenedor Principal -->
 
-
-
 <div class="elContenedor">
   <p>asdasdad</p>
   <div class="flex-container">
     <div>
-        <div class="card" style="width: 300px;">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#20c997"></rect>
-            </svg>
-            <div class="card-body">
-              <h5 class="card-title">MAT021</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Ver</a>
-            </div>
-          </div>
+      <div class="card" style="width: 300px">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg"
+          role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#20c997"></rect>
+        </svg>
+        <div class="card-body">
+          <h5 class="card-title">MAT021</h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="btn btn-primary">Ver</a>
+        </div>
+      </div>
     </div>
     <div>
-      <div class="card" style="width: 300px;">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#d80808"></rect>
-          </svg>
-          <div class="card-body">
-            <h5 class="card-title">MAT022</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Ver</a>
-          </div>
+      <div class="card" style="width: 300px">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg"
+          role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#d80808"></rect>
+        </svg>
+        <div class="card-body">
+          <h5 class="card-title">MAT022</h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="btn btn-primary">Ver</a>
         </div>
+      </div>
     </div>
     <div>
-      <div class="card" style="width: 300px;">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#0e4bcf"></rect>
-          </svg>
-          <div class="card-body">
-            <h5 class="card-title">MAT023</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Ver</a>
-          </div>
+      <div class="card" style="width: 300px">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg"
+          role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#0e4bcf"></rect>
+        </svg>
+        <div class="card-body">
+          <h5 class="card-title">MAT023</h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="btn btn-primary">Ver</a>
         </div>
+      </div>
     </div>
-
   </div>
 
   <h1>Diseño botones</h1>
 
   <div class="container" ng-app="myApp" ng-controller="customersCtrl">
-    <div style="margin-left: 20px;">
-      <button id="btn1" type="button" class="collapseBtn" data-toggle="collapse" data-target="#demo" id="btn1" >{raiz}</button>
-      <button type="button" class="collapseBtn" data-toggle="collapse" data-target="#demo1" id="btn2">{otroSigno}</button>
+    <div style="margin-left: 20px">
+      <button id="btn1" type="button" class="collapseBtn" data-toggle="collapse" data-target="#demo" id="btn1">
+        {raiz}
+      </button>
+      <button type="button" class="collapseBtn" data-toggle="collapse" data-target="#demo1" id="btn2">
+        {otroSigno}
+      </button>
     </div>
-    
 
-
-    <div id="demo" class="collapse" >
+    <div id="demo" class="collapse">
       <section>
         <span>Basic Math</span>
 
         <table class="tabla-btn">
+          <tr>
+            <td>Celda 1</td>
+
+            <td>Celda 2</td>
+
+            <td>Celda 3</td>
+          </tr>
 
           <tr>
-        
-            <td>Celda 1</td>
-        
-            <td>Celda 2</td>
-        
-            <td>Celda 3</td>
-        
-          </tr>
-        
-          <tr>
-        
             <td>Celda 4</td>
-        
+
             <td>Celda 5</td>
-        
+
             <td>Celda 6</td>
-        
           </tr>
-        
         </table>
       </section>
     </div>
-  
+
     <div id="demo1" class="collapse">
       <section>
         <span>a</span>
       </section>
-      
     </div>
   </div>
-  
-<div>
-  <script>
-    $('#demo').show();
 
-    $('#btn1').click(function(){
-    $('.collapse').hide();
-    $('#demo').show();
-    // css propias
-    $( "#btn1" ).css('background', '#3D56B2');
-    $( "#btn1" ).css('border-style', 'solid');
-    $( "#btn1" ).css('border-color', '#14279B #14279B #3D56B2');
-    
+  <h1>Diseño de rangos</h1>
 
-    //css inpropias
-    $( "#btn2" ).css('background', 'transparent');
-    $( "#btn2" ).css('border', 'none');
-    
-  });
-  $('#btn2').click(function(){
-    $('.collapse').hide();
-    $('#demo1').show();
-
-    //css propias
-    $( "#btn2" ).css('background', '#3D56B2');
-    $( "#btn2" ).css('border-style', 'solid');
-    $( "#btn2" ).css('border-color', '#14279B #14279B #3D56B2');
-
-    //css inpropias
-    $( "#btn1" ).css('background', 'transparent');
-    $( "#btn1" ).css('border', 'none');
-    
-  }); 
-  </script>
-  
-  <style>
-    .collapse{
-      color: whitesmoke;
-      border:#14279B 4px solid;
-      background-color: #3D56B2;
-      padding: 30px;
-      padding-top: 5px;
-    }
-    
-    #btn1{
-    background: #3D56B2;
-    border-style: solid;
-    border-color: #14279B #14279B #3D56B2;
-    }
-    .collapseBtn{
-    background: transparent;
-    margin-bottom: -4px;
-    border:none;
-    border-radius: 8px 8px 0px 0px;
-    color: #14279B;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    }
-
-    .collapseBtn:hover{
-      color: #5C7AEA;
-
-    }
-
-    td {
-      background-color: #5C7AEA;
-      box-shadow: 0px 0px 3px rgb(36, 33, 33);
-      border-radius: 8px ;
-      padding: 10px;
-    }
-
-    table {
-    border-collapse: separate;
-    text-indent: initial;
-    border-spacing: 10px;
+  <p id="rango1">Mechón</p>
+  <p id="rango2">Mechón junior</p>
+  <p id="rango3">Mechón senior</p>
+  <p id="rango4">Mechón dorado</p>
+  <p id="rango5">Mechón master</p>
+<canvas id="myCanvas"></canvas>
+  <div>
+    <style>
+      canvas {
+  display:block;
+  margin:auto;
 }
+    </style>
+    <script>
+      $("#demo").show();
 
+      $("#btn1").click(function () {
+        $(".collapse").hide();
+        $("#demo").show();
+        // css propias
+        $("#btn1").css("background", "#3D56B2");
+        $("#btn1").css("border-style", "solid");
+        $("#btn1").css("border-color", "#14279B #14279B #3D56B2");
 
+        //css inpropias
+        $("#btn2").css("background", "transparent");
+        $("#btn2").css("border", "none");
+      });
+      $("#btn2").click(function () {
+        $(".collapse").hide();
+        $("#demo1").show();
 
+        //css propias
+        $("#btn2").css("background", "#3D56B2");
+        $("#btn2").css("border-style", "solid");
+        $("#btn2").css("border-color", "#14279B #14279B #3D56B2");
 
-  </style>
-{% endblock %}
+        //css inpropias
+        $("#btn1").css("background", "transparent");
+        $("#btn1").css("border", "none");
+      });
+    </script>
+
+    <style>
+      .collapse {
+        color: whitesmoke;
+        border: #14279b 4px solid;
+        background-color: #3d56b2;
+        padding: 30px;
+        padding-top: 5px;
+      }
+
+      #btn1 {
+        background: #3d56b2;
+        border-style: solid;
+        border-color: #14279b #14279b #3d56b2;
+      }
+
+      .collapseBtn {
+        background: transparent;
+        margin-bottom: -4px;
+        border: none;
+        border-radius: 8px 8px 0px 0px;
+        color: #14279b;
+        padding: 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+
+      .collapseBtn:hover {
+        color: #5c7aea;
+      }
+
+      td {
+        background-color: #5c7aea;
+        box-shadow: 0px 0px 3px rgb(36, 33, 33);
+        border-radius: 8px;
+        padding: 10px;
+      }
+
+      table {
+        border-collapse: separate;
+        text-indent: initial;
+        border-spacing: 10px;
+      }
+    </style>
+    {% endblock %}
+  </div>
+</div>
