@@ -225,8 +225,8 @@ def home(request):
         elo = usuario.elo
         nombre = User.objects.get(id=id_usuario).first_name
         apellido = User.objects.get(id=id_usuario).last_name
-        nombre_completo = nombre + ' ' + apellido + ' (' + elo + ')'
-        top.append((nombre_completo,puntuacion))
+        nombre_completo = nombre + ' ' + apellido
+        top.append((nombre_completo,puntuacion,elo))
 
     post = PostForo.objects.all()[:2]
     
@@ -381,11 +381,11 @@ def resultado(request):
         certamen = historialCertamen.objects.get(id_certamen=data['id'])
         if certamen.estado == False:
             elo = (
-                ('Mechon',0,499),
-                ('Mechon junior',500,1999),
-                ('Mechon senior',2000,3999),
-                ('mechon dorado',4000 ,6499),
-                ('Mechon master',6500,9499),
+                ('Mechón',0,499),
+                ('Mechón junior',500,1999),
+                ('Mechón senior',2000,3999),
+                ('Mechón dorado',4000 ,6499),
+                ('Mechón master',6500,9499),
             )
             perfil_usuario = profile.objects.filter(name_id = request.user.id)
             puntos_usuario = perfil_usuario[0].punctuation

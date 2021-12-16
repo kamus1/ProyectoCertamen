@@ -21,7 +21,7 @@
     <div style="margin-left: 30px;">
             <h3>Preguntas recientes</h3>
             {% for p in post %}
-            <div class="preguntas mb-3" style="max-width: 500px;">
+            <div class="preguntas mb-3" style="max-width: 570px;">
 
                 <div class="card-header"><i style="float: left; "class="svg-inline--fa fas fa-user-circle fa-2x">&nbsp;</i> <p style="display: inline-block; ">{{p.usuario.first_name}}{{" "}}{{p.usuario.last_name}}</p> &nbsp;<h7 style="color: gray; font-size: 10px;">{{p.tiempo}}</h7></div> 
                 <div class="card-body">
@@ -38,20 +38,42 @@
 
             {% endfor %}
         </div>
-        <div>
+        <div style="margin-right: 30px;">
             <h3> <i class="fas fa-trophy" style="color: gold;"></i> &nbsp; Ranking puntos de prestigio</h3>
-            <table class="table">
+            <table style="margin-top: 25px; padding-top: 16px;"class="table ">
                 <thead>
                     <tr>
+                        <th scope="col">Top</th>
                         <th scope="col">Nombre usuario </th>
+                        <th scope="col">Rango</th>
                         <th scope="col">Puntos de prestigo</th>
                     </tr>
                 </thead>
-
+                      
                 {% for u in top %}
                 <thbody>
                     <tr>
-                        <td> {{u.0}}</td>
+                        <td>{{forloop.counter}}</td>
+                        <td> {{u.0}} </td>
+                        <td>
+                            {% if u.2 == 'Mechón' %}
+                            <p id="rango1">{{u.2}}</p>
+
+                            {% elif u.2 == 'Mechón junior' %}
+                            <p id="rango2">{{u.2}}</p>
+
+                            {% elif u.2 == 'Mechón senior' %}
+                            <p id="rango3">{{u.2}}</p>
+
+                            {% elif u.2 == 'Mechón dorado' %}
+                            <p id="rango4">{{u.2}}</p>
+
+                            {% elif u.2 == 'Mechón master' %}
+                            <p id="rango5">{{u.2}}</p>
+                            {% endif %}
+
+
+                        </td>
                         <td style="padding-left: 10px;"> {{u.1}}</td>
                     </tr>
                 </thbody>
